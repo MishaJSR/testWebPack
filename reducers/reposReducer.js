@@ -1,23 +1,22 @@
-const SET_COUNT = "SET_COUNT"
+const SET_USERS = 'SET_USERS'
 
 
 const defaultState = {
-    items : [],
-    isFetching: true,
-    count: 0
+    users : [],
+    isFetching: true
 }
 
 
 export default  function reposReducer(state= defaultState, action){
     switch (action.type) {
-        case SET_COUNT:
+        case SET_USERS:
             return {
                 ...state,
-                count: action.payload
+                users: action.payload
             }
         default:
             return state
     }
 }
 
-export const setCount = (count) => ({type: SET_COUNT, payload: count})
+export const setUsers = (us) => ({type: SET_USERS, payload: us})
