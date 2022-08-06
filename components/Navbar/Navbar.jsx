@@ -1,15 +1,19 @@
 import React, {useEffect} from "react";
 import classes from './Navbar.less'
+import './Navbar.less'
 
-const Navbar = () => {
+const Navbar = (props) => {
 
 
 
-    return (
-            <div>
-                Navbar
+    return props.isA ?(
+            <div className="navb">
+                Navbar Auth
             </div>
-    )
+    ) :
+        <div className="navb">
+            Navbar Not Auth
+        </div>
 }
 
 export default Navbar

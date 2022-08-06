@@ -5,7 +5,7 @@ const defaultState = {
     allUsers : [],
     activeUser: {
         aUser: [],
-        isActive: null
+        isActive: true
     },
     isFetching: true
 }

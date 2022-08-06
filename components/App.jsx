@@ -1,17 +1,18 @@
 import React from "react";
-import classes from './App.less'
-import Main from "./main/Main";
-import FindFr from "./FindFr/FindFr";
-import { Route, Routes} from "react-router-dom";
 import AppRoute from "../router/routes";
 import Navbar from "./Navbar/Navbar";
+import './App.less'
+import {useDispatch, useSelector} from "react-redux";
 
 const App = () => {
 
+    const dispatch = useDispatch()
+
+    const isAuth = useSelector(state => state.users.activeUser.isActive)
 
     return (
         <div className="container">
-                <Navbar/>
+                <Navbar isA={isAuth}/>
                 <AppRoute/>
         </div>
     )
