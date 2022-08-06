@@ -2,17 +2,21 @@ const SET_USERS = 'SET_USERS'
 
 
 const defaultState = {
-    users : [],
+    allUsers : [],
+    activeUser: {
+        aUser: [],
+        isActive: null
+    },
     isFetching: true
 }
 
 
-export default  function reposReducer(state= defaultState, action){
+export default  function usersReducer(state= defaultState, action){
     switch (action.type) {
         case SET_USERS:
             return {
                 ...state,
-                users: action.payload
+                allUsers: action.payload
             }
         default:
             return state

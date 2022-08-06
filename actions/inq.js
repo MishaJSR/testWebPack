@@ -1,5 +1,5 @@
 import axios from "axios";
-import {setUsers} from "../reducers/reposReducer";
+import {setUsers} from "../reducers/usersReducer";
 
 export const getRepos = () => {
     return async (dispatch) => {
