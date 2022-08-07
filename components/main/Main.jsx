@@ -5,13 +5,8 @@ import {getRepos} from "../../actions/inq";
 import List from "./List/List";
 
 const Main = () => {
-    const dispatch = useDispatch()
 
     const users = useSelector(state => state.users.allUsers)
-
-useEffect(() => {
-    dispatch(getRepos())
-}, [])
 
 
     return (
