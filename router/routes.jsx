@@ -3,6 +3,9 @@ import { Route, Routes} from "react-router-dom";
 import FindFr from "../components/FindFr/FindFr";
 import Main from "../components/main/Main";
 import {useDispatch, useSelector} from "react-redux";
+import Profile from "../components/Profile/Profile";
+import StartPage from "../components/StartPage/StartPage";
+import Authificate from "../components/Authificate/Authificate";
 
 const AppRoute = () => {
 
@@ -12,12 +15,14 @@ const AppRoute = () => {
 
     return isAuth ?(
             <Routes>
+                <Route path="/" element={<StartPage />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
                 <Route path="*" element={<Main />} />
             </Routes>
     ) :
         <Routes>
-            <Route path="*" element={<Main />} />
+            <Route path="/login" element={<Authificate />} />
         </Routes>
 }
 
