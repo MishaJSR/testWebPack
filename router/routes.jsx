@@ -21,9 +21,13 @@ const AppRoute = () => {
                 <Route path="*" element={<Main />} />
             </Routes>
     ) :
-        <Routes>
-            <Route path="/login" element={<Authificate />} />
-        </Routes>
+        (
+            <Routes>
+                <Route path="/login" element={<Authificate />} />
+                <Route path="*" element={<Authificate />} />
+            </Routes>
+        )
+
 }
 
 export default AppRoute

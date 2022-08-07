@@ -11,9 +11,11 @@ const App = () => {
     const isAuth = useSelector(state => state.users.activeUser.isActive)
 
     return (
-        <div className="container">
-                <Navbar isA={isAuth}/>
+        <div className="container-app">
+                <Navbar/>
+            <div className="grey-background">
                 <AppRoute/>
+            </div>
         </div>
     )
 }
