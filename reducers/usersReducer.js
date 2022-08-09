@@ -36,14 +36,22 @@ export default  function usersReducer(state= defaultState, action){
                 }
             }
         case AUTHIFICATE:
-
+         let myUser = state.allUsers.filter(user => {
+                 return (user._id === action.payload)
+             });
+         let frList = [];
+         let frMass = []
+         myUser[0].friends.map(el => frList.push(el.id_friend))
+            frList.map(el => {
+                state.allUsers.map(user => {
+                    if (user._id === el) frMass.push(user)
+                });
+            })
             return {
                 ...state,
                 activeUser: {
-                    aUser: state.allUsers.filter(user => {
-                        return (user._id === action.payload)
-                    }),
-                    friendsMass: {...state.allUsers},
+                    aUser: [...myUser],
+                    friendsMass: {...frMass},
                     isActive: true,
                     jwt: action.payload
                 }
