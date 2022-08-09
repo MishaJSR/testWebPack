@@ -20,17 +20,18 @@ const FindFr = () => {
     }, [])
 
     return (
-        <div className="container">
+        <div className="cont pt-vh2">
             <div className="row">
-                <div className="col-10 center">
+                <div className="col-12 center pb-vh2">
                     <input onChange={(e) => dispatch(setSearch(e.target.value))} className="text-field__input" type="text" name="login" id="login"  placeholder="Search Friend"/>
                 </div>
                 {(filterUsers.length === 0) ?
-                    <div className="col-10 center">
+
+                    <div className="col-12 center">
                         {friendsMass.map((el) => <List user={el}/>)}
                     </div>
                      :
-                        <div className="col-10 center">
+                        <div className="col-12 center">
                             {filterUsers.map((el) => <List user={el}/>)}
                         </div>
                 }
