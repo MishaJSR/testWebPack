@@ -4,6 +4,7 @@ import './Navbar.less'
 import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {onAuth, unAuth} from "../../reducers/usersReducer";
+import {setAuth} from "../../actions/inq";
 
 const Navbar = () => {
 
@@ -37,7 +38,7 @@ const Navbar = () => {
                 <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2" to="/">
                     InHunt
                 </NavLink>
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right" to="/profile" onClick={() => dispatch(onAuth())}>
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right" to="/profile" onClick={() => dispatch(setAuth())}>
                     Login
                 </NavLink>
             </div>

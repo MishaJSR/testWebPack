@@ -8,7 +8,9 @@ const defaultState = {
     allUsers : [],
     activeUser: {
         aUser: [],
-        isActive: true
+        friendsMass: [],
+        isActive: true,
+        jwt: null
     },
     searchTerm: null,
     filterUsers: [],
@@ -27,18 +29,27 @@ export default  function usersReducer(state= defaultState, action){
             return {
                 ...state,
                 activeUser: {
-                    ...state.activeUser,
-                    isActive: false
+                    aUser: [],
+                    friendsMass: [],
+                    isActive: false,
+                    jwt: null
                 }
             }
         case AUTHIFICATE:
+
             return {
                 ...state,
                 activeUser: {
-                    ...state.activeUser,
-                    isActive: true
+                    aUser: state.allUsers.filter(user => {
+                        return (user._id === action.payload)
+                    }),
+                    friendsMass: {...state.allUsers},
+                    isActive: true,
+                    jwt: action.payload
                 }
             }
+
+
         case SET_SEARCHTERM:
             const fmass = state.allUsers.filter(user => {
                 return user.username.toLowerCase().includes(action.payload.toLowerCase())
@@ -57,6 +68,7 @@ export const setUsers = (us) => ({type: SET_USERS, payload: us})
 
 export const unAuth = () => ({type: UNAUTHIFICATE})
 
-export const onAuth = () => ({type: AUTHIFICATE})
+export const onAuth = (jwt) => ({type: AUTHIFICATE, payload: jwt})
 
 export const setSearch = (term) => ({type: SET_SEARCHTERM, payload: term})
+

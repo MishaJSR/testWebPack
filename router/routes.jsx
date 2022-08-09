@@ -18,7 +18,8 @@ const AppRoute = () => {
                 <Route path="/" element={<StartPage />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
-                <Route path="*" element={<Main />} />
+                <Route path="/messages" element={<Main />} />
+                <Route path="*" element={<StartPage />} />
             </Routes>
     ) :
         (

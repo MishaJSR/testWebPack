@@ -10,8 +10,6 @@ const FindFr = () => {
 
     const dispatch = useDispatch()
 
-    const users = useSelector(state => state.users.allUsers)
-
     const filterUsers = useSelector(state => state.users.filterUsers)
 
 
@@ -25,9 +23,15 @@ const FindFr = () => {
                 <div className="col-10 center">
                     <input onChange={(e) => dispatch(setSearch(e.target.value))} className="text-field__input" type="text" name="login" id="login"  placeholder="Search Friend"/>
                 </div>
-                <div className="col-10 center">
-                    {filterUsers.map((el) => <List user={el}/>)}
-                </div>
+                {(filterUsers.length === 0) ?
+                    <div>
+                        Пустой
+                    </div>
+                     :
+                        <div className="col-10 center">
+                            {filterUsers.map((el) => <List user={el}/>)}
+                        </div>
+                }
 
             </div>
         </div>
