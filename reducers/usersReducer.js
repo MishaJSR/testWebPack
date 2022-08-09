@@ -51,7 +51,7 @@ export default  function usersReducer(state= defaultState, action){
                 ...state,
                 activeUser: {
                     aUser: [...myUser],
-                    friendsMass: {...frMass},
+                    friendsMass: [...frMass],
                     isActive: true,
                     jwt: action.payload
                 }
@@ -59,14 +59,24 @@ export default  function usersReducer(state= defaultState, action){
 
 
         case SET_SEARCHTERM:
-            const fmass = state.allUsers.filter(user => {
-                return user.username.toLowerCase().includes(action.payload.toLowerCase())
-            })
-            return {
-                ...state,
-                searchTerm: action.payload,
-                filterUsers: fmass
+            if (action.payload === '') {
+                return {
+                    ...state,
+                    searchTerm: action.payload,
+                    filterUsers: []
+                }
+            } else {
+                const fmass = state.allUsers.filter(user => {
+                    return user.username.toLowerCase().includes(action.payload.toLowerCase())
+                })
+                return {
+                    ...state,
+                    searchTerm: action.payload,
+                    filterUsers: fmass
+                }
             }
+
+
         default:
             return state
     }

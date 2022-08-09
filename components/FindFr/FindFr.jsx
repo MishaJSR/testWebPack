@@ -12,6 +12,8 @@ const FindFr = () => {
 
     const filterUsers = useSelector(state => state.users.filterUsers)
 
+    const friendsMass = useSelector(state => state.users.activeUser.friendsMass)
+
 
     useEffect(() => {
         dispatch(getRepos());
@@ -24,8 +26,8 @@ const FindFr = () => {
                     <input onChange={(e) => dispatch(setSearch(e.target.value))} className="text-field__input" type="text" name="login" id="login"  placeholder="Search Friend"/>
                 </div>
                 {(filterUsers.length === 0) ?
-                    <div>
-                        Пустой
+                    <div className="col-10 center">
+                        {friendsMass.map((el) => <List user={el}/>)}
                     </div>
                      :
                         <div className="col-10 center">
