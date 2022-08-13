@@ -8,7 +8,7 @@ import {getRepos} from "../actions/inq";
 const App = () => {
 
     return (
-        <div className="container-app">
+        <div>
                 <Navbar/>
             <div className="grey-background">
                 <AppRoute/>

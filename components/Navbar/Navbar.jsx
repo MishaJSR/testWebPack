@@ -15,19 +15,19 @@ const Navbar = () => {
     return isAuth ?(
         <div className="cont-nav">
             <div className="row navbar">
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2" to="/">
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/">
                     InHunt
                 </NavLink>
-                <NavLink className="col-1 col-l-2 col-lg-2 col-mg-2 col-sm-3" to="/profile">
+                <NavLink className="col-1 col-l-2 col-lg-2 col-mg-2 col-sm-3 a-nav" to="/profile">
                     My Profile
                 </NavLink>
-                <NavLink className="col-1 col-l-3 col-lg-4 col-mg-3 col-sm-3" to="/search">
+                <NavLink className="col-1 col-l-3 col-lg-4 col-mg-3 col-sm-3 a-nav" to="/search">
                    Search Friends
                 </NavLink>
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2" to="/messages">
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/messages">
                     Messages
                 </NavLink>
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right" to="/login" onClick={() => dispatch(unAuth())}>
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right a-nav" to="/login" onClick={() => dispatch(unAuth())}>
                     Unlogin
                 </NavLink>
             </div>
@@ -35,10 +35,10 @@ const Navbar = () => {
     ) :
         <div className="cont-nav">
             <div className="row navbar">
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2" to="/">
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/">
                     InHunt
                 </NavLink>
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right" to="/profile" onClick={() => dispatch(setAuth())}>
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right a-nav" to="/profile" onClick={() => dispatch(setAuth())}>
                     Login
                 </NavLink>
             </div>
