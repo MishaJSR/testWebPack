@@ -5,7 +5,7 @@ import Main from "../components/main/Main";
 import {useDispatch, useSelector} from "react-redux";
 import Profile from "../components/Profile/Profile";
 import StartPage from "../components/StartPage/StartPage";
-import Login from "../components/Authificate/Login";
+import Login from "../components/Login/Login";
 import Registration from "../components/Avtorization/Registration";
 
 const AppRoute = () => {

@@ -13,8 +13,10 @@ export const logIn = (email, password) => {
         const response = await axios.post("http://localhost:5000/auth/login", {email: email, password: password})
         dispatch(login(response.data));
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('id', response.data.id);
         dispatch(setA(true));
-
+        const response2 = await axios.get(`http://localhost:5000/users/${response.data.id}`)
+        dispatch(setMyUser(response2.data));
     }
 }
 
@@ -24,19 +26,11 @@ export const reg = (email, password, gender, name) => {
         const response = await axios.post("http://localhost:5000/auth/registration", {email: email, password: password, gender: gender, name: name})
         dispatch(login(response.data));
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('id', response.data.id);
         dispatch(setA(true))
     }
 }
 
-export const getSmall = (id) => {
-    return async (dispatch) => {
-        const response = await axios.get(`http://localhost:5000/users/${id}`)
-        dispatch(login(response.data.id));
-        localStorage.setItem('token', response.data.token);
-        dispatch(setA(true))
-
-    }
-}
 
 export const setAuth = () => {
     return async (dispatch) => {

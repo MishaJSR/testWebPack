@@ -124,4 +124,4 @@ export const setA = (bool) => ({type: SET_AUTH, payload: bool})
 
 export const unAuth = () => ({type: UNAUTHIFICATE})
 
-export const setMyUser = (user) => ({type: UNAUTHIFICATE, payload: user})
+export const setMyUser = (user) => ({type: SET_MYUSER, payload: user})
