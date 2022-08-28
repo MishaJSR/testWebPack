@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Profile from "../components/Profile/Profile";
 import StartPage from "../components/StartPage/StartPage";
 import Login from "../components/Authificate/Login";
+import Registration from "../components/Avtorization/Registration";
 
 const AppRoute = () => {
 
@@ -25,6 +26,7 @@ const AppRoute = () => {
         (
             <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/registration" element={<Registration />} />
                 <Route path="*" element={<Login />} />
             </Routes>
         )

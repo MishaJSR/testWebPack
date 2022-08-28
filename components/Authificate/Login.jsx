@@ -24,12 +24,11 @@ const Login = () => {
             <div className="form">
                 <form className="login_form">
                     <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
-                    <input type="password" onChange={(e) => setPass(e.target.value)} placeholder="password"/>
+                    <input type="password" onChange={(e) => setPass(e.target.value)} placeholder="Password"/>
 
                     <NavLink className="but-login" onClick={() =>  dispatch(logIn(email, pass))} to="/profile">Login</NavLink>
                         <p className="p-not-reg">Not registered? </p>
-                            <a className="a-create-acc" href="">Create an account</a>
-                    {email} {pass}
+                            <NavLink className="a-create-acc" to="/registration">Create an account</NavLink>
 
                 </form>
             </div>

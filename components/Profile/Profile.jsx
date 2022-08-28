@@ -4,10 +4,10 @@ import classes from './Profile.less'
 const Profile = () => {
 
 
-
     return (
             <div>
                 This is Profile
+                {localStorage.getItem('token')}
             </div>
     )
 }

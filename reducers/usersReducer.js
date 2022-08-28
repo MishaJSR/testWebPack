@@ -2,8 +2,10 @@ const SET_USERS = 'SET_USERS'
 const UNAUTHIFICATE = 'UNAUTHIFICATE'
 const AUTHIFICATE = 'AUTHIFICATE'
 const SET_SEARCHTERM = 'SET_SEARCHTERM'
+
 const LOGIN = 'LOGIN'
 const SET_AUTH = 'SET_AUTH'
+const SET_MYUSER = 'SET_MYUSER'
 
 
 const defaultState = {
@@ -15,8 +17,8 @@ const defaultState = {
         jwt: null
     },
     isAuth: false,
+    loginUser:[],
     myUser:[],
-    token: null,
     searchTerm: null,
     filterUsers: [],
     isFetching: true
@@ -34,13 +36,14 @@ export default  function usersReducer(state= defaultState, action){
             return {
                 ...state,
                 isAuth: false,
-                myUser:[]
+                loginUser:[],
+                myUser: []
             }
 
         case LOGIN:
             return {
                 ...state,
-                myUser: action.payload
+                loginUser: action.payload
 
             }
 
@@ -50,6 +53,14 @@ export default  function usersReducer(state= defaultState, action){
                 isAuth: action.payload
 
             }
+
+        case SET_MYUSER:
+            return {
+                ...state,
+                myUser: action.payload
+            }
+
+
 
         case AUTHIFICATE:
          let myUser = state.allUsers.filter(user => {
@@ -112,3 +123,5 @@ export const login = (term) => ({type: LOGIN, payload: term})
 export const setA = (bool) => ({type: SET_AUTH, payload: bool})
 
 export const unAuth = () => ({type: UNAUTHIFICATE})
+
+export const setMyUser = (user) => ({type: UNAUTHIFICATE, payload: user})
