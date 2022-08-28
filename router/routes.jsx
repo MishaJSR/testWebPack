@@ -5,13 +5,13 @@ import Main from "../components/main/Main";
 import {useDispatch, useSelector} from "react-redux";
 import Profile from "../components/Profile/Profile";
 import StartPage from "../components/StartPage/StartPage";
-import Authificate from "../components/Authificate/Authificate";
+import Login from "../components/Authificate/Login";
 
 const AppRoute = () => {
 
     const dispatch = useDispatch()
 
-    const isAuth = useSelector(state => state.users.activeUser.isActive)
+    const isAuth = useSelector(state => state.users.isAuth)
 
     return isAuth ?(
             <Routes>
@@ -24,8 +24,8 @@ const AppRoute = () => {
     ) :
         (
             <Routes>
-                <Route path="/login" element={<Authificate />} />
-                <Route path="*" element={<Authificate />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Login />} />
             </Routes>
         )
 

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import classes from './Authificate.less'
+import classes from './Avtorization.less'
 
-const Authificate = () => {
+const Avtorization = () => {
 
 
 
@@ -11,9 +11,7 @@ const Authificate = () => {
                 <form className="login_form">
                     <input type="text" placeholder="Email"/>
                     <input type="password" placeholder="password"/>
-                    <button className="but-login">Login</button>
-                        <p className="p-not-reg">Not registered? </p>
-                            <a className="a-create-acc" href="">Create an account</a>
+                    <button className="but-login">Auth Me!</button>
 
                 </form>
             </div>
@@ -21,4 +19,4 @@ const Authificate = () => {
     )
 }
 
-export default Authificate
+export default Avtorization

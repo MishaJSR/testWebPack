@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const dispatch = useDispatch()
 
-    const isAuth = useSelector(state => state.users.activeUser.isActive)
+    const isAuth = useSelector(state => state.users.isAuth)
 
     return isAuth ?(
         <div className="cont-nav">
@@ -38,7 +38,7 @@ const Navbar = () => {
                 <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/">
                     InHunt
                 </NavLink>
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right a-nav" to="/profile" onClick={() => dispatch(setAuth())}>
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right a-nav" to="/profile">
                     Login
                 </NavLink>
             </div>
