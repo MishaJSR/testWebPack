@@ -10,13 +10,11 @@ const Login = () => {
 
     const dispatch = useDispatch()
 
+    const isFetch = useSelector(state => state.users.isFetching)
+
     const isAuth = useSelector(state => state.users.isAuth)
-
     const [email, setEmail] = useState("");
-
     const [pass, setPass] = useState("");
-
-    const [isPreloader, setPreloader] = useState(false);
 
     if (isAuth) {
         return <Navigate to="/" />
@@ -29,8 +27,8 @@ const Login = () => {
                     <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
                     <input type="password" onChange={(e) => setPass(e.target.value)} placeholder="Password"/>
 
-                    <NavLink className="but-login" onClick={() =>  {setPreloader (true); dispatch(logIn(email, pass)); }} to="/profile">
-                        Login
+                    <NavLink  className={isFetch? "disabled-link but-login" : " but-login"} onClick={() =>  dispatch(logIn(email, pass))} to="/profile">
+                        {isFetch? <PreloaderLogin/> : "Login"}
                     </NavLink>
                         <p className="p-not-reg">Not registered? </p>
                             <NavLink className="a-create-acc" to="/registration">Create an account</NavLink>

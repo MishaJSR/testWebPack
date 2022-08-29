@@ -6,6 +6,8 @@ const SET_SEARCHTERM = 'SET_SEARCHTERM'
 const LOGIN = 'LOGIN'
 const SET_AUTH = 'SET_AUTH'
 const SET_MYUSER = 'SET_MYUSER'
+const SET_FETCH = 'SET_FETCH'
+
 
 
 const defaultState = {
@@ -21,7 +23,7 @@ const defaultState = {
     myUser:[],
     searchTerm: null,
     filterUsers: [],
-    isFetching: true
+    isFetching: false
 }
 
 
@@ -59,6 +61,13 @@ export default  function usersReducer(state= defaultState, action){
                 ...state,
                 myUser: action.payload
             }
+
+        case SET_FETCH:
+            return {
+                ...state,
+                isFetching: action.payload
+            }
+
 
 
 
@@ -125,3 +134,5 @@ export const setA = (bool) => ({type: SET_AUTH, payload: bool})
 export const unAuth = () => ({type: UNAUTHIFICATE})
 
 export const setMyUser = (user) => ({type: SET_MYUSER, payload: user})
+
+export const setFetch = (bool) => ({type: SET_FETCH, payload: bool})
