@@ -1,5 +1,5 @@
 import axios from "axios";
-import {onAuth, setA, setUsers, login, setMyUser, setFetch} from "../reducers/usersReducer";
+import {onAuth, setA, setUsers, login, setMyUser, setFetch, setError} from "../reducers/usersReducer";
 
 export const getRepos = () => {
     return async (dispatch) => {
@@ -11,14 +11,18 @@ export const getRepos = () => {
 export const logIn = (email, password) => {
     return async (dispatch) => {
         dispatch(setFetch(true))
-        const response = await axios.post("http://localhost:5000/auth/login", {email: email, password: password})
-        dispatch(login(response.data));
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('id', response.data.id);
-        dispatch(setA(true));
-        dispatch(setFetch(false))
-        const response2 = await axios.get(`http://localhost:5000/users/${response.data.id}`)
-        dispatch(setMyUser(response2.data));
+        await axios.post("http://localhost:5000/auth/login", {email: email, password: password})
+            .then(response => {
+                dispatch(login(response.data));
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('id', response.data.id);
+                dispatch(setA(true));
+            })
+            .catch(err => {
+                dispatch(setError(err.response.data.message))
+            })
+            .finally(() =>  dispatch(setFetch(false))
+            )
     }
 }
 

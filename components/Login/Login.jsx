@@ -11,14 +11,13 @@ const Login = () => {
     const dispatch = useDispatch()
 
     const isFetch = useSelector(state => state.users.isFetching)
+    const Error = useSelector(state => state.users.errorMessage)
 
     const isAuth = useSelector(state => state.users.isAuth)
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
 
-    if (isAuth) {
-        return <Navigate to="/" />
-    }
+    if (isAuth)  return <Navigate to="/" />
 
     return (
         <div className="login_page">
@@ -32,6 +31,7 @@ const Login = () => {
                     </NavLink>
                         <p className="p-not-reg">Not registered? </p>
                             <NavLink className="a-create-acc" to="/registration">Create an account</NavLink>
+                    <p className="error_message">{Error}</p>
                 </form>
             </div>
 
