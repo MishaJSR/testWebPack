@@ -26,7 +26,8 @@ const defaultState = {
     searchTerm: null,
     filterUsers: [],
     isFetching: false,
-    errorMessage: null
+    errorMessage: null,
+    genderCh: ['Men', 'Women', 'Gey', 'Lesbi']
 }
 
 
