@@ -10,15 +10,11 @@ const Profile = () => {
 
     const navigate = useNavigate();
 
-    const clicker = (e) => {
-        e.preventDefault();
-        navigate("/messages");
-    }
     return (
             <div>
                 This is Profile
+                Hello!!!
                 {localStorage.getItem('id')}
-                <NavLink to={""} onClick={(e) => clicker(e)}>ccc</NavLink>
             </div>
     )
 }

@@ -6,11 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {onAuth, unAuth} from "../../reducers/usersReducer";
 import {setAuth} from "../../actions/inq";
 
-const Navbar = () => {
+const Navbar = ({isAuth}) => {
 
     const dispatch = useDispatch()
-
-    const isAuth = useSelector(state => state.users.isAuth)
 
     return isAuth ?(
         <div className="cont-nav">

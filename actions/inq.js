@@ -9,7 +9,7 @@ export const getRepos = () => {
     }
 }
 
-export const logIn = (email, password) => {
+export const logIn = (email, password, navigate) => {
     return async (dispatch) => {
         dispatch(setFetch(true))
         await axios.post("http://localhost:5000/auth/login", {email: email, password: password})
@@ -19,6 +19,7 @@ export const logIn = (email, password) => {
                 localStorage.setItem('id', response.data.id);
                 dispatch(setA(true));
                 dispatch(setError(false))
+                navigate("/profile")
             })
             .catch(err => {
                 dispatch(setError(err.response.data.message))
