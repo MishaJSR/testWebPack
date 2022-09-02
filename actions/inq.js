@@ -29,8 +29,7 @@ export const logIn = (email, password) => {
 }
 
 
-export const reg = (email, password, gender, name, e) => {
-    e.preventDefault();
+export const reg = (email, password, gender, name, navigate) => {
     return async (dispatch) => {
         dispatch(setFetch(true))
         await axios.post("http://localhost:5000/auth/registration", {email: email, password: password, gender: gender, name: name})
@@ -40,6 +39,7 @@ export const reg = (email, password, gender, name, e) => {
                 localStorage.setItem('id', response.data.id);
                 dispatch(setA(true));
                 dispatch(setError(false))
+                navigate("/profile")
             })
             .catch(err => {
                 dispatch(setError(err.response.data.message))

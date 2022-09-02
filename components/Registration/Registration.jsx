@@ -2,12 +2,13 @@ import classes from './Registration.less'
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logIn, reg} from "../../actions/inq";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import GenderSelect from "./GenderSelect";
 
 const Registration = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
     const genders = useSelector(state => state.users.genderCh)
     const Error = useSelector(state => state.users.errorMessage)
@@ -27,7 +28,7 @@ const Registration = () => {
                     <select value={gender} onChange={(event) => setGender(event.target.value)}>
                         <GenderSelect genderMass={genders}/>
                     </select>
-                    <NavLink className="but-login" onClick={(e) =>  dispatch(reg(email, pass, gender, name, e))} to={Error? "/registration": "/profile"}>Registrate</NavLink>
+                    <NavLink className="but-login" onClick={() =>  dispatch(reg(email, pass, gender, name, navigate))} to={""}>Registrate</NavLink>
                     <p className="error_message">{Error}</p>
                 </form>
             </div>
