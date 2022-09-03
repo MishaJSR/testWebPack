@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import classes from './Login.less'
-import {setSearch} from "../../reducers/usersReducer";
+import {setError, setSearch} from "../../reducers/usersReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {getRepos, logIn} from "../../actions/inq";
 import {Navigate, Link, NavLink, useNavigate} from "react-router-dom";
@@ -28,7 +28,7 @@ const Login = () => {
                         {isFetch? <PreloaderLogin/> : "Login"}
                     </NavLink>
                         <p className="p-not-reg">Not registered? </p>
-                            <NavLink className="a-create-acc" to="/registration">Create an account</NavLink>
+                            <NavLink className="a-create-acc" onClick={() => dispatch(setError(false))} to="/registration">Create an account</NavLink>
                     <p className="error_message">{Error}</p>
                 </form>
             </div>

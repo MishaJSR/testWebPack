@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {logIn, reg} from "../../actions/inq";
 import {NavLink, useNavigate} from "react-router-dom";
 import GenderSelect from "./GenderSelect";
+import PreloaderLogin from "../Preloaders/PreloaderLogin";
 
 const Registration = () => {
 
@@ -12,6 +13,7 @@ const Registration = () => {
 
     const genders = useSelector(state => state.users.genderCh)
     const Error = useSelector(state => state.users.errorMessage)
+    const isFetch = useSelector(state => state.users.isFetching)
 
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
@@ -28,7 +30,10 @@ const Registration = () => {
                     <select value={gender} onChange={(event) => setGender(event.target.value)}>
                         <GenderSelect genderMass={genders}/>
                     </select>
-                    <NavLink className="but-login" onClick={() =>  dispatch(reg(email, pass, gender, name, navigate))} to={""}>Registrate</NavLink>
+                    <NavLink className={isFetch? "disabled-link but-login" : " but-login"} onClick={() =>  dispatch(reg(email, pass, gender, name, navigate))} to="">
+                        {isFetch? <PreloaderLogin/> : "Registrate"}
+                    </NavLink>
+
                     <p className="error_message">{Error}</p>
                 </form>
             </div>

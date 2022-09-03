@@ -8,7 +8,6 @@ const Profile = () => {
 
     const dispatch = useDispatch()
 
-    const navigate = useNavigate();
 
     return (
             <div>

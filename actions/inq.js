@@ -30,6 +30,7 @@ export const logIn = (email, password, navigate) => {
 }
 
 
+
 export const reg = (email, password, gender, name, navigate) => {
     return async (dispatch) => {
         dispatch(setFetch(true))
