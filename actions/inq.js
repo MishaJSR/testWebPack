@@ -55,7 +55,7 @@ export const reg = (email, password, gender, name, navigate) => {
 export const checkAuth = () => {
     return async (dispatch) => {
         const tok = localStorage.getItem('token');
-        await axios.get(`http://localhost:5000/auth/${tok}`)
+        await axios.get(`http://localhost:5000/auth/check/${tok}`)
             .then(response => {
                 dispatch(setA(true));
             })
