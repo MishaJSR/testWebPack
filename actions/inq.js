@@ -54,8 +54,8 @@ export const reg = (email, password, gender, name, navigate) => {
 
 export const checkAuth = () => {
     return async (dispatch) => {
-        if (localStorage.getItem('token') === null) dispatch(setA(false));
-        else await axios.get(`http://localhost:5000/auth/${tok}`)
+        const tok = localStorage.getItem('token');
+        await axios.get(`http://localhost:5000/auth/${tok}`)
             .then(response => {
                 dispatch(setA(true));
             })
