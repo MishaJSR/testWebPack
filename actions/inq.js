@@ -54,17 +54,13 @@ export const reg = (email, password, gender, name, navigate) => {
 
 export const checkAuth = () => {
     return async (dispatch) => {
-        if (localStorage.getItem('token') === null) {
-            dispatch(setA(false));
-            dispatch(setError("false"))
-        } else await axios.get(`http://localhost:5000/auth/${tok}`)
+        if (localStorage.getItem('token') === null) dispatch(setA(false));
+        else await axios.get(`http://localhost:5000/auth/${tok}`)
             .then(response => {
                 dispatch(setA(true));
-                dispatch(setError(false))
             })
             .catch(err => {
                 dispatch(setA(false));
-                dispatch(setError("false"))
             })
     }
 }
