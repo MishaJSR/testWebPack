@@ -41,9 +41,7 @@ export default  function usersReducer(state= defaultState, action){
         case UNAUTHIFICATE:
             return {
                 ...state,
-                isAuth: false,
-                loginUser:[],
-                myUser: []
+                isAuth: false
             }
 
         case LOGIN:

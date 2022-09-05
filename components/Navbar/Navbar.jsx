@@ -3,7 +3,7 @@ import classes from './Navbar.less'
 import './Navbar.less'
 import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {onAuth, unAuth} from "../../reducers/usersReducer";
+import {onAuth, setA, unAuth} from "../../reducers/usersReducer";
 import {setAuth} from "../../actions/inq";
 
 const Navbar = ({isAuth}) => {
@@ -25,7 +25,10 @@ const Navbar = ({isAuth}) => {
                 <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/messages">
                     Messages
                 </NavLink>
-                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right a-nav" to="/login" onClick={() => dispatch(unAuth())}>
+                <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 right a-nav" to="/login" onClick={() => {
+                    localStorage.clear();
+                    dispatch(setA(false))
+                }}>
                     Unlogin
                 </NavLink>
             </div>

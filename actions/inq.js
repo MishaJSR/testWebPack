@@ -52,11 +52,21 @@ export const reg = (email, password, gender, name, navigate) => {
 }
 
 
-export const setAuth = () => {
+export const checkAuth = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:5000/users")
-        dispatch(setUsers(response.data))
-        dispatch(onAuth("62c98d3952c7810524f0f5ba"))
+        if (localStorage.getItem('token') === null) {
+            dispatch(setA(false));
+            dispatch(setError("false"))
+        } else await axios.get(`http://localhost:5000/auth/${tok}`)
+            .then(response => {
+                dispatch(setA(true));
+                dispatch(setError(false))
+            })
+            .catch(err => {
+                dispatch(setA(false));
+                dispatch(setError("false"))
+            })
     }
 }
+
 
