@@ -3,7 +3,7 @@ import AppRoute from "../router/routes";
 import Navbar from "./Navbar/Navbar";
 import './App.less'
 import {useDispatch, useSelector} from "react-redux";
-import {checkAuth} from "../actions/inq";
+import {checkAuth} from "../actions/auth";
 
 const App = () => {
 

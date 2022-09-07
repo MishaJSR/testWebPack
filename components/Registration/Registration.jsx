@@ -1,7 +1,7 @@
 import classes from './Registration.less'
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {reg} from "../../actions/inq";
+import {reg} from "../../actions/auth";
 import {NavLink, useNavigate} from "react-router-dom";
 import GenderSelect from "./GenderSelect";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";

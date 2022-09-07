@@ -8,6 +8,9 @@ const Profile = () => {
 
     const dispatch = useDispatch()
 
+    useEffect(() => {
+
+    })
 
     return (
             <div>

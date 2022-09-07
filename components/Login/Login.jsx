@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import classes from './Login.less'
 import {useDispatch, useSelector} from "react-redux";
-import {logIn} from "../../actions/inq";
+import {logIn} from "../../actions/auth";
 import { NavLink, useNavigate} from "react-router-dom";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 

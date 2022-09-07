@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {setSearch} from "../../reducers/profileReducer";
 import {useDispatch, useSelector} from "react-redux";
 import List from "../main/List/List";
-import {getRepos} from "../../actions/inq";
+import {getRepos} from "../../actions/auth";
 
 const FindFr = () => {
 
