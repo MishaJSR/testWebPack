@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 import classes from './Login.less'
-import {setError, setSearch} from "../../reducers/usersReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {getRepos, logIn} from "../../actions/inq";
-import {Navigate, Link, NavLink, useNavigate} from "react-router-dom";
+import {logIn} from "../../actions/inq";
+import { NavLink, useNavigate} from "react-router-dom";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 
 const Login = () => {
@@ -11,8 +10,8 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    const isFetch = useSelector(state => state.users.isFetching)
-    const Error = useSelector(state => state.users.errorMessage)
+    const isFetch = useSelector(state => state.auth.isFetching)
+    const Error = useSelector(state => state.auth.errorMessage)
 
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");

@@ -1,7 +1,7 @@
 import classes from './Registration.less'
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {logIn, reg} from "../../actions/inq";
+import {reg} from "../../actions/inq";
 import {NavLink, useNavigate} from "react-router-dom";
 import GenderSelect from "./GenderSelect";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
@@ -11,9 +11,9 @@ const Registration = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    const genders = useSelector(state => state.users.genderCh)
-    const Error = useSelector(state => state.users.errorMessage)
-    const isFetch = useSelector(state => state.users.isFetching)
+    const genders = useSelector(state => state.auth.gendersPool)
+    const Error = useSelector(state => state.auth.errorMessage)
+    const isFetch = useSelector(state => state.auth.isFetching)
 
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");

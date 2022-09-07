@@ -7,7 +7,7 @@ import {checkAuth} from "../actions/inq";
 
 const App = () => {
 
-    const isAuth = useSelector(state => state.users.isAuth);
+    const isAuth = useSelector(state => state.auth.isAuth);
     const dispatch = useDispatch()
 
     useEffect(() => {

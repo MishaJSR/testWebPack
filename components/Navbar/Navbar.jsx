@@ -1,10 +1,9 @@
 import React, {useEffect} from "react";
 import classes from './Navbar.less'
 import './Navbar.less'
-import {Link, NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {onAuth, setA, unAuth} from "../../reducers/usersReducer";
-import {setAuth} from "../../actions/inq";
+import { NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setA} from "../../reducers/authReducer";
 
 const Navbar = ({isAuth}) => {
 

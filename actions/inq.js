@@ -1,6 +1,7 @@
 import axios from "axios";
-import {onAuth, setA, setUsers, login, setMyUser, setFetch, setError} from "../reducers/usersReducer";
-import React, {useEffect, useState} from "react";
+import { setUsers} from "../reducers/profileReducer";
+import React from "react";
+import {setA, setAuthError, setAuthFetch} from "../reducers/authReducer";
 
 export const getRepos = () => {
     return async (dispatch) => {
@@ -11,20 +12,19 @@ export const getRepos = () => {
 
 export const logIn = (email, password, navigate) => {
     return async (dispatch) => {
-        dispatch(setFetch(true))
+        dispatch(setAuthFetch(true))
         await axios.post("http://localhost:5000/auth/login", {email: email, password: password})
             .then(response => {
-                dispatch(login(response.data));
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('id', response.data.id);
                 dispatch(setA(true));
-                dispatch(setError(false))
+                dispatch(setAuthError(false))
                 navigate("/profile")
             })
             .catch(err => {
-                dispatch(setError(err.response.data.message))
+                dispatch(setAuthError(err.response.data.message))
             })
-            .finally(() =>  dispatch(setFetch(false))
+            .finally(() =>  dispatch(setAuthFetch(false))
             )
     }
 }
@@ -33,20 +33,19 @@ export const logIn = (email, password, navigate) => {
 
 export const reg = (email, password, gender, name, navigate) => {
     return async (dispatch) => {
-        dispatch(setFetch(true))
+        dispatch(setAuthFetch(true))
         await axios.post("http://localhost:5000/auth/registration", {email: email, password: password, gender: gender, name: name})
             .then(response => {
-                dispatch(login(response.data));
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('id', response.data.id);
                 dispatch(setA(true));
-                dispatch(setError(false))
+                dispatch(setAuthError(false))
                 navigate("/profile")
             })
             .catch(err => {
-                dispatch(setError(err.response.data.message))
+                dispatch(setAuthError(err.response.data.message))
             })
-            .finally(() =>  dispatch(setFetch(false))
+            .finally(() =>  dispatch(setAuthFetch(false))
             )
     }
 }
