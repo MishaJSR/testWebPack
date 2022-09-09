@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {logIn} from "../../actions/auth";
 import { NavLink, useNavigate} from "react-router-dom";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
+import {setAuthError} from "../../reducers/authReducer";
 
 const Login = () => {
 
@@ -27,7 +28,7 @@ const Login = () => {
                         {isFetch? <PreloaderLogin/> : "Login"}
                     </NavLink>
                         <p className="p-not-reg">Not registered? </p>
-                            <NavLink className="a-create-acc" onClick={() => dispatch(setError(false))} to="/registration">Create an account</NavLink>
+                            <NavLink className="a-create-acc" onClick={() => dispatch(setAuthError(false))} to="/registration">Create an account</NavLink>
                     <p className="error_message">{Error}</p>
                 </form>
             </div>
