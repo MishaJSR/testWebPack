@@ -19,7 +19,7 @@ export const logIn = (email, password, navigate) => {
                 dispatch(setMyId(response.data.id))
                 dispatch(setA(true));
                 dispatch(setAuthError(false))
-                navigate(`/profile`)
+                navigate(`/profile/${response.data.id}`)
             })
             .catch(err => {
                 dispatch(setAuthError(err.response.data.message))
