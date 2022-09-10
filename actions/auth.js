@@ -19,7 +19,7 @@ export const logIn = (email, password, navigate) => {
                 dispatch(setMyId(response.data.id))
                 dispatch(setA(true));
                 dispatch(setAuthError(false))
-                navigate(`/profile/${response.data.id}`)
+                navigate(`/profile`)
             })
             .catch(err => {
                 dispatch(setAuthError(err.response.data.message))
@@ -57,6 +57,7 @@ export const checkAuth = () => {
         await axios.get(`http://localhost:5000/auth/check/${tok}`)
             .then(response => {
                 dispatch(setA(true));
+                dispatch(setMyId(response.data.id))
             })
             .catch(err => {
                 dispatch(setA(false));

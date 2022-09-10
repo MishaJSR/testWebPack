@@ -15,14 +15,15 @@ const AppRoute = ({isAuth}) => {
                 <Route path="/profile/:id" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
                 <Route path="/messages" element={<Main />} />
-                <Route path="*" element={<Navigate to="/" replace />}/>
+                <Route path="*" element={<StartPage/>}/>
             </Routes>
     ) :
         (
             <Routes>
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
-                <Route path="*" element={<Navigate to="/login" replace />}/>
+                <Route path="*" element={<Login />}/>
             </Routes>
         )
 

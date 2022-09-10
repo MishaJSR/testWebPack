@@ -5,8 +5,8 @@ const SET_PROFILE_ERROR = 'SET_PROFILE_ERROR'
 
 const defaultState = {
     allUsers : [],
-    myUser:[],
-    myUserInfo:[],
+    nowUser:[],
+    nowUserInfo:[],
     errorMessage: null
 }
 
@@ -22,13 +22,13 @@ export default  function profileReducer(state= defaultState, action){
         case SET_MY_USER:
             return {
                 ...state,
-                myUser: action.payload
+                nowUser: action.payload
             }
 
         case SET_MY_USER_INFO:
             return {
                 ...state,
-                myUserInfo: action.payload
+                nowUserInfo: action.payload
             }
         case SET_PROFILE_ERROR:
             return {

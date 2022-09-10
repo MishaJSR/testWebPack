@@ -2,12 +2,13 @@ import React, {useEffect} from "react";
 import classes from './Navbar.less'
 import './Navbar.less'
 import { NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setA} from "../../reducers/authReducer";
 
 const Navbar = ({isAuth}) => {
 
     const dispatch = useDispatch()
+    const activeUser = useSelector(state => state.auth.activeUserId)
 
     return isAuth ?(
         <div className="cont-nav">
@@ -15,7 +16,7 @@ const Navbar = ({isAuth}) => {
                 <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/">
                     InHunt
                 </NavLink>
-                <NavLink className="col-1 col-l-2 col-lg-2 col-mg-2 col-sm-3 a-nav" to="/profile">
+                <NavLink className="col-1 col-l-2 col-lg-2 col-mg-2 col-sm-3 a-nav" to={"/profile/"+ activeUser}>
                     My Profile
                 </NavLink>
                 <NavLink className="col-1 col-l-3 col-lg-4 col-mg-3 col-sm-3 a-nav" to="/search">

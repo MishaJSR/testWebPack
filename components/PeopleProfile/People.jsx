@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from "react";
-import classes from './Profile.less'
+import classes from './People.less'
 import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {setProfileInfo} from "../../actions/profileActions";
 
 
-const Profile = (props) => {
+const People = () => {
     const dispatch = useDispatch()
-    const myuserId = useSelector(state => state.auth.activeUserId)
     const nowUser = useSelector(state => state.profile.nowUser)
+    const params = useParams()
 
     useEffect(() => {
-        dispatch(setProfileInfo(myuserId))
-    }, [])
+        dispatch(setProfileInfo(params.id))
+    })
 
     return (
             <div>
@@ -22,4 +22,4 @@ const Profile = (props) => {
     )
 }
 
-export default Profile
+export default People
