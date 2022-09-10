@@ -5,13 +5,13 @@ import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {setProfileInfo} from "../../actions/profileActions";
 
 
-const Profile = (props) => {
+const Profile = () => {
     const dispatch = useDispatch()
-    const myuserId = useSelector(state => state.auth.activeUserId)
     const nowUser = useSelector(state => state.profile.nowUser)
+    const params = useParams();
 
     useEffect(() => {
-        dispatch(setProfileInfo(myuserId))
+        dispatch(setProfileInfo(params.id))
     }, [])
 
     return (
