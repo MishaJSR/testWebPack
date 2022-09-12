@@ -15,9 +15,13 @@ const App = () => {
     });
 
     return (
-            <div>
-                <Navbar isAuth={isAuth}/>
-                <div className="grey-background">
+            <div className="wrapper">
+                <div className="header-background">
+                    <div className="header col-8 col-md-12">
+                        <Navbar isAuth={isAuth}/>
+                    </div>
+                </div>
+                <div className="main col-8 col-md-12 grey-background">
                     <AppRoute isAuth={isAuth}/>
                 </div>
             </div>
