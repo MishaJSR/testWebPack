@@ -8,10 +8,10 @@ import {setProfileInfo} from "../../actions/profileActions";
 const Profile = () => {
     const dispatch = useDispatch()
     const nowUser = useSelector(state => state.profile.nowUser)
-    const params = useParams();
+    const {idUser} = useParams();
 
     useEffect(() => {
-        dispatch(setProfileInfo(params.id))
+        dispatch(setProfileInfo(idUser))
     }, [])
 
     return (

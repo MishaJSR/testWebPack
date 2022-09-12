@@ -12,7 +12,7 @@ const AppRoute = ({isAuth}) => {
     return isAuth ?(
             <Routes>
                 <Route path="/" element={<StartPage />} />
-                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/profile/:idUser" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
                 <Route path="/messages" element={<Main />} />
                 <Route path="*" element={<StartPage/>}/>
