@@ -5,7 +5,7 @@
   color: white;
   padding: 0 !important;
   font-size: 12px;
-  height: 9vh;
+  height: @navhieght;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -19,8 +19,9 @@
   margin: 0 auto;
   padding: 0;
   width: 100%;
-  min-height: 7vh;
+  height: 100%;
   align-items: center;
+  justify-content: center;
 }
 
 .a-nav{
@@ -38,28 +39,18 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1vw;
 }
 .menu {
   display: flex;
   justify-content: center;
-
+  align-items: center;
 }
 
 .menu__list {
   display: flex;
   list-style: none;
 }
-.block{
-  display: block;
-  width: 100%;
-  height: 100%;
-}
 
-.m0p0{
-  margin: 0;
-  padding: 0;
-}
 
 .menu__item > a{
   font-size: 18px;
@@ -67,14 +58,14 @@
 
 
 .hoverpink{
-  padding: 2.5vh 1.5vw;
+  display: flex;
   color: black;
   &:hover{
     background-color: #6c00af;
     color: white;
     transition: .3s linear;
     .login_end{
-      color: white;
+      color: #d3d3d3;
     }
   }
   .login_end{
@@ -84,9 +75,25 @@
 
 
 .logolink{
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover{
+    background-color: #dadada;
+    transition: .3s linear;
+  }
 }
 .nullprofile{
   height: 32px;
   width: 32px;
+}
+.img-box{
+  width: 40px;
+  height: 40px;
+}
+
+.menu__item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

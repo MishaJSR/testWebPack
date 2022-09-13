@@ -4,9 +4,10 @@ import './Navbar.less'
 import { NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setA} from "../../reducers/authReducer";
-import logo from  '../../icons/logo.png'
+import logo from  '../../icons/brotherhood.png'
+import angel from  '../../icons/angel.png'
+import message from  '../../icons/send.png'
 import nullProf from  '../../icons/profile.png'
-import Image from "../../actions/Image";
 
 const Navbar = ({isAuth}) => {
 
@@ -14,7 +15,7 @@ const Navbar = ({isAuth}) => {
     const activeUser = useSelector(state => state.auth.activeUserId)
 
     return isAuth ?(
-        <div className="cont-nav row">
+        <div className="cont-nav">
             <NavLink className="col-1 logolink"  to="/">
                 <img src={logo} alt=""/>
             </NavLink>
@@ -79,20 +80,20 @@ const Navbar = ({isAuth}) => {
             {/*</div>*/}
         </div>
     ) :
-        <div className="cont-nav row">
+        <div className="cont-nav">
                 <NavLink className="col-1 logolink"  to="/">
-                    <img src={logo} alt=""/>
+                    <img className="img-box" src={logo} alt=""/>
                 </NavLink>
             <nav className="header__menu menu col-9">
-                <ui className="menu__list">
-                    <li className="menu__item">
+                <ui className="menu__list col-6">
+                    <li className="menu__item col-6">
                         <NavLink className="hoverpink" to="/">
-                            About Us
+                            <img className="img-box" src={angel} alt=""/>
                         </NavLink>
                     </li>
-                    <li className="menu__item">
+                    <li className="menu__item col-6">
                         <NavLink  className="hoverpink" to="/">
-                            Test
+                            <img className="img-box" src={message} alt=""/>
                         </NavLink>
                     </li>
                 </ui>
