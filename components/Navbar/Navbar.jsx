@@ -5,6 +5,7 @@ import { NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setA} from "../../reducers/authReducer";
 import logo from  '../../icons/logo.png'
+import nullProf from  '../../icons/profile.png'
 import Image from "../../actions/Image";
 
 const Navbar = ({isAuth}) => {
@@ -13,39 +14,40 @@ const Navbar = ({isAuth}) => {
     const activeUser = useSelector(state => state.auth.activeUserId)
 
     return isAuth ?(
-        <div className="cont-nav">
-            <div className="logoLink">
-                <NavLink className="" to="/">
-                    <img src={logo} alt=""/>
-                </NavLink>
-            </div>
-
-            <nav className="header__menu menu">
+        <div className="cont-nav row">
+            <NavLink className="col-1 logolink"  to="/">
+                <img src={logo} alt=""/>
+            </NavLink>
+            <nav className="header__menu menu col-9">
                 <ui className="menu__list">
                     <li className="menu__item">
-                        <NavLink className="" to={"/profile/"+ activeUser}>
+                        <NavLink className="hoverpink" to={"/profile/"+ activeUser}>
                             My Profile
                     </NavLink>
                     </li>
                     <li className="menu__item">
-                        <NavLink className="" to="/search">
+                        <NavLink className="hoverpink" to="/search">
                             Search Friends
                         </NavLink>
                     </li>
                     <li className="menu__item">
-                        <NavLink className="" to="/messages">
+                        <NavLink className="hoverpink" to="/messages">
                             Messages
                         </NavLink>
                     </li>
                 </ui>
             </nav>
-            <div className="authUserInfo">
-                    <NavLink className="" to="/login" onClick={() => {
-                        localStorage.clear();
-                        dispatch(setA(false))
-                    }}>
-                        Unlogin
-                    </NavLink>
+            <div className="authUserInfo col-2 hoverpink">
+                <NavLink to={"/profile/"+ activeUser}>
+                    <img className="nullprofile" src={nullProf} alt=""/>
+                </NavLink>
+
+                <NavLink className="login_end" to="/login" onClick={() => {
+                    localStorage.clear();
+                    dispatch(setA(false))
+                }}>
+                    Unlogin
+                </NavLink>
             </div>
             {/*<div className="container row navbar">*/}
             {/*    <div className="left">*/}
@@ -77,13 +79,11 @@ const Navbar = ({isAuth}) => {
             {/*</div>*/}
         </div>
     ) :
-        <div className="cont-nav">
-            <div className="m0p0 logoLink col-2">
-                <NavLink className="logoLink col-2 hoverpink"  to="/">
-                    <Image sendUrl={logo}/>
+        <div className="cont-nav row">
+                <NavLink className="col-1 logolink"  to="/">
+                    <img src={logo} alt=""/>
                 </NavLink>
-            </div>
-            <nav className="header__menu menu col-8">
+            <nav className="header__menu menu col-9">
                 <ui className="menu__list">
                     <li className="menu__item">
                         <NavLink className="hoverpink" to="/">
@@ -98,7 +98,7 @@ const Navbar = ({isAuth}) => {
                 </ui>
             </nav>
             <div className="authUserInfo col-2">
-                <NavLink className="hoverpink" to="/login">
+                <NavLink className="login_end hoverpink" to="/login">
                     Login
                 </NavLink>
             </div>

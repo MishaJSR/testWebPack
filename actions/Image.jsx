@@ -1,10 +1,10 @@
 import React from "react";
 
-const Image = ({sendUrl}) => {
+const Image = () => {
 return (
     <div
         style={{
-            backgroundImage: `url(${sendUrl})`
+            backgroundImage: `url(../icons/logo.png)`
         }}
     />
 )
