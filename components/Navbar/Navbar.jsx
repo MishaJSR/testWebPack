@@ -5,9 +5,9 @@ import { NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setA} from "../../reducers/authReducer";
 import logo from  '../../icons/brotherhood.png'
-import angel from  '../../icons/angel.png'
 import message from  '../../icons/send.png'
 import nullProf from  '../../icons/profile.png'
+import findlove from  '../../icons/findlove.png'
 
 const Navbar = ({isAuth}) => {
 
@@ -81,28 +81,20 @@ const Navbar = ({isAuth}) => {
         </div>
     ) :
         <div className="cont-nav">
-                <NavLink className="col-1 logolink"  to="/">
+                <NavLink className="logolink hoverpink col-1 col-l-2 col-sm-3"  to="/">
                     <img className="img-box" src={logo} alt=""/>
                 </NavLink>
-            <nav className="header__menu menu col-9">
-                <ui className="menu__list col-6">
-                    <li className="menu__item col-6">
-                        <NavLink className="hoverpink" to="/">
-                            <img className="img-box" src={angel} alt=""/>
-                        </NavLink>
-                    </li>
-                    <li className="menu__item col-6">
-                        <NavLink  className="hoverpink" to="/">
+                <div className="menu__list">
+                    <NavLink className="hoverpink col-2 col-lg-3" to="/">
+                            <img className="img-box" src={findlove} alt=""/>
+                    </NavLink>
+                    <NavLink className="hoverpink col-2 col-lg-3" to="/">
                             <img className="img-box" src={message} alt=""/>
-                        </NavLink>
-                    </li>
-                </ui>
-            </nav>
-            <div className="authUserInfo col-2">
-                <NavLink className="login_end hoverpink" to="/login">
+                    </NavLink>
+                </div>
+                <NavLink className="logolink hoverpink col-1 col-l-2 col-sm-3" to="/login">
                     Login
                 </NavLink>
-            </div>
             {/*<div className="row navbar">*/}
             {/*    <NavLink className="col-1 col-l-1 col-lg-1 col-mg-2 col-sm-2 a-nav" to="/">*/}
             {/*        InHunt*/}

@@ -17,11 +17,8 @@
 .cont-nav {
   display: flex;
   margin: 0 auto;
-  padding: 0;
   width: 100%;
   height: 100%;
-  align-items: center;
-  justify-content: center;
 }
 
 .a-nav{
@@ -49,33 +46,21 @@
 .menu__list {
   display: flex;
   list-style: none;
+  flex: 1 1 auto;
+  justify-content: center;
 }
 
 
-.menu__item > a{
-  font-size: 18px;
+.cont-nav > a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .hoverpink{
   display: flex;
   color: black;
-  &:hover{
-    background-color: #6c00af;
-    color: white;
-    transition: .3s linear;
-    .login_end{
-      color: #d3d3d3;
-    }
-  }
-  .login_end{
-    color: black;
-  }
-}
-
-
-.logolink{
-  display: flex;
   align-items: center;
   justify-content: center;
   &:hover{
@@ -83,13 +68,19 @@
     transition: .3s linear;
   }
 }
+
+
+.logolink{
+  padding: 0 20px;
+}
 .nullprofile{
   height: 32px;
   width: 32px;
 }
 .img-box{
-  width: 40px;
-  height: 40px;
+  width: calc(@navhieght/2);
+  height: calc(@navhieght/2);
+  text-align: center;
 }
 
 .menu__item{
