@@ -1,0 +1,96 @@
+.top_userInfo{
+  display: flex;
+  height: auto;
+  background-color: rgb(255, 180, 230);
+  padding: 2vh 1vw;
+  gap: 1vw;
+}
+
+.userAva{
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 30%;
+  height: auto;
+  gap: 7px;
+  justify-content: top;
+  align-items: center;
+}
+
+.ava_a{
+  display: flex;
+  border: 2px solid rgb(177, 177, 177);
+  border-radius: 4px;
+  overflow: hidden;
+  &:hover{
+    border:  2px solid rgb(124, 0, 93);
+  }
+}
+
+.ava_button{
+  display: flex;
+  padding: .5vw 0;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  border: 2px solid rgb(177, 177, 177);
+  border-radius: 4px;
+  &:hover{
+    background-color: rgb(253, 166, 231);
+    border:  2px solid rgb(124, 0, 93);
+  }
+}
+
+.userInfo{
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.textInfo{
+  padding-bottom: 15px;
+}
+.userName{
+  font-size: 1.5rem;
+}
+.genderText{
+  font-size: 1.1rem;
+  padding-bottom: 5px;
+}
+.genderList{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5vw;
+}
+.genderImg{
+  width: 10%;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid rgb(177, 177, 177);
+  overflow: hidden;
+  &:hover{
+    border: 2px solid rgb(124, 0, 93);
+    transform: scale(1.1);
+    transition: .3s linear;
+  }
+}
+.botInfo{
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  background-color: rgb(53, 0, 51);
+  gap: 0.8vw;
+  padding: 1vw 1vw;
+}
+.postImg{
+  width: 32.5%;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  &:hover{
+    transform: scale(1.03);
+    transition: .3s linear;
+
+  }
+}
