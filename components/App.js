@@ -16,7 +16,7 @@ const App = () => {
 
     return (
             <div className="wrapper">
-                <div className="header-background">
+                <div className="header-background header-mobile">
                     <div className="header">
                         <Navbar isAuth={isAuth}/>
                     </div>

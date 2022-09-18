@@ -51,12 +51,6 @@ const Navbar = ({isAuth}) => {
                     <img className="img-box" src={logo} alt=""/>
                 </NavLink>
                 <div className="menu__list">
-                    <NavLink className="hoverpink col-2 col-lg-3" to="/">
-                            <img className="img-box" src={findlove} alt=""/>
-                    </NavLink>
-                    <NavLink className="hoverpink col-2 col-lg-3" to="/">
-                            <img className="img-box" src={message} alt=""/>
-                    </NavLink>
                 </div>
                 <NavLink className="hoverpink col-1 col-l-1 col-sm-3" to="/login">
                     Login
