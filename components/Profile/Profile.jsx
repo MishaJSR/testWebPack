@@ -29,9 +29,6 @@ const Profile = () => {
                         <a className='ava_a'>
                             <img src={photo1}></img>
                         </a>
-                        <a className='ava_button'>
-                            Add photo
-                        </a>
                     </div>
                     <div className='userInfo'>
                         <div className='textInfo'>

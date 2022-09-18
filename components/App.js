@@ -21,7 +21,7 @@ const App = () => {
                         <Navbar isAuth={isAuth}/>
                     </div>
                 </div>
-                <div className="main col-8 col-md-12 grey-background">
+                <div className="main col-8 col-md-12 background-point">
                     <AppRoute isAuth={isAuth}/>
                 </div>
             </div>

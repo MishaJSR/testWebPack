@@ -1,9 +1,10 @@
 .top_userInfo{
   display: flex;
   height: auto;
-  background-color: rgb(225, 225, 225);
+  background-color: #000a30;
   padding: 2vh 1vw;
   gap: 1vw;
+  color: white;
 }
 
 .userAva{
@@ -18,7 +19,6 @@
 
 .ava_a{
   display: flex;
-  border: 2px solid rgb(177, 177, 177);
   border-radius: 4px;
   overflow: hidden;
   &:hover{
@@ -82,10 +82,17 @@
   background-color: white;
   gap: 0.8vw;
   padding: 1vw 1vw;
+  background-color: #000a30;
 }
 .postImg{
   width: 32.5%;
   background-color: white;
   border-radius: 5px;
   overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+  .top_userInfo{
+    flex-direction: column;
+  }
 }
