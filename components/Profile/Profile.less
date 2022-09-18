@@ -2,7 +2,6 @@
   display: flex;
   height: auto;
   background-color: #000a30;
-  padding: 2vh 1vw;
   gap: 1vw;
   color: white;
 }
@@ -18,12 +17,10 @@
 }
 
 .ava_a{
+  position: relative;
   display: flex;
   border-radius: 4px;
   overflow: hidden;
-  &:hover{
-    border:  2px solid rgb(124, 0, 93);
-  }
 }
 
 .ava_button{
@@ -51,9 +48,6 @@
 .textInfo{
   padding-bottom: 15px;
 }
-.userName{
-  font-size: 1.5rem;
-}
 .genderText{
   font-size: 1.1rem;
   padding-bottom: 5px;
@@ -80,19 +74,38 @@
   flex-wrap: wrap;
   height: auto;
   background-color: white;
-  gap: 0.8vw;
+  gap: 3vw;
   padding: 1vw 1vw;
   background-color: #000a30;
 }
 .postImg{
-  width: 32.5%;
+  width: calc((66.66vw - 8vw) / 3);
+  height: calc((66.66vw - 8vw) / 3);
   background-color: white;
   border-radius: 5px;
   overflow: hidden;
 }
+.user_blur_name{
+  position: absolute;
+  bottom: 0;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+}
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:576px) {
   .top_userInfo{
     flex-direction: column;
+  }
+  .ava_a{
+    width: 100vw;
+    height: 40vh;
+  }
+}
+@media screen and (max-width:768px) {
+  .postImg{
+    width: calc((100vw - 8vw) / 3);
+    height: calc((100vw - 8vw) / 3);
   }
 }

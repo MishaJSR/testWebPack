@@ -116,6 +116,7 @@ legend {
   flex-wrap: wrap;
 }
 .wrapper{
+  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -123,12 +124,17 @@ legend {
 }
 .main{
   margin: 0 auto;
-  height: auto;
+  min-height: 100vh;
 }
 
 .header{
   height: @navhieght !important;
 }
+.mobile_navbar{
+  display: none;
+}
+
+
 
 .round{
   border-radius: 50%;
@@ -269,9 +275,6 @@ legend {
   .col-lg-12 {
     width: 100%;
   }
-  .main{
-    margin-bottom: @navhieght;
-  }
 }
 @media screen and (max-width:768px) {
   .container {
@@ -313,11 +316,6 @@ legend {
   .col-md-12 {
     width: 100%;
   }
-  .header-mobile{
-    overflow: hidden;
-    position: fixed ;
-    bottom: 0;
-  }
 }
 @media screen and (max-width:576px) {
   .container {
@@ -358,6 +356,25 @@ legend {
   }
   .col-sm-12 {
     width: 100%;
+  }
+  .header-mobile{
+    overflow: hidden;
+    position: fixed ;
+    bottom: 0;
+  }
+  .mobile_navbar{
+    position: absolute;
+    display: flex;
+    top: 0;
+    width: 100vw;
+    height: 40px;
+    background-color: #d3d3d3;
+    opacity: .3;
+    flex-direction: row-reverse;
+    z-index: 2;
+    & .authUserInfo{
+      gap: 1vw;
+    }
   }
 }
 

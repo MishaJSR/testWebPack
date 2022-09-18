@@ -9,7 +9,7 @@ import message from  '../../icons/send.png'
 import findlove from  '../../icons/findlove.png'
 import userimg from  '../../icons/user.png'
 import exit from  '../../icons/exit.png'
-import photo1 from  '../../icons/1photo.jpg'
+import photo1 from  '../../icons/11photo.jpg'
 
 const Navbar = ({isAuth}) => {
 
@@ -19,7 +19,7 @@ const Navbar = ({isAuth}) => {
 
     return isAuth ?(
         <div className="cont-nav">
-            <NavLink className="hoverpink col-1 col-l-2 col-sm-3"  to="/">
+            <NavLink className="hoverpink mobile-none col-1 col-l-2 col-sm-3"  to="/">
                 <img className="img-box" src={logo} alt=""/>
             </NavLink>
             <div className="menu__list col-4">
@@ -33,7 +33,7 @@ const Navbar = ({isAuth}) => {
                             <img className="img-box" src={message} alt=""/>
                         </NavLink>
             </div>
-            <div className="authUserInfo col-1 col-l-2 col-sm-3">
+            <div className="authUserInfo mobile-none col-1 col-l-2 col-sm-3">
                 <NavLink className="hoverpink col-3 col-lg-4"  to={"/profile/"+ activeUser}>
                     <img className="nullprofile round" src={nowUser.ava? nowUser.ava : photo1  } alt=""/>
                 </NavLink>

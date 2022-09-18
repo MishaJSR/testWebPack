@@ -4,12 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {setProfileInfo} from "../../actions/profileActions";
 import userimg from  '../../icons/user.png'
-import photo1 from  '../../icons/1photo.jpg'
-import photo2 from  '../../icons/2photo.jpg'
-import photo3 from  '../../icons/3photo.jpg'
-import photo4 from  '../../icons/4photo.jpg'
-import photo5 from  '../../icons/5photo.jpg'
-import photo6 from  '../../icons/6photo.jpg'
+import photo1 from  '../../icons/11photo.jpg'
+import photo2 from  '../../icons/8photo.jpg'
+import photo3 from  '../../icons/9photo.jpg'
+import photo4 from  '../../icons/10photo.jpg'
+import photo5 from  '../../icons/7photo.jpg'
+import photo6 from  '../../icons/12photo.jpg'
 
 
 const Profile = () => {
@@ -28,13 +28,11 @@ const Profile = () => {
                     <div className='userAva'>
                         <a className='ava_a'>
                             <img src={photo1}></img>
+                            <p className="user_blur_name"> {nowUser.name}</p>
                         </a>
                     </div>
                     <div className='userInfo'>
                         <div className='textInfo'>
-                            <div className='userName'>
-                                {nowUser.name}
-                            </div>
                             <div className='userStatus'>
                                 {nowUserInfo.status}
                             </div>
@@ -58,6 +56,7 @@ const Profile = () => {
                         <a className='postImg'><img src={photo4}></img></a>
                         <a className='postImg'><img src={photo5}></img></a>
                         <a className='postImg'><img src={photo6}></img></a>
+                        <a className='postImg'><img src={photo1}></img></a>
                     </div>
 
                 </div>

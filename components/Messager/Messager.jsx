@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import classes from './Messager.less'
 import {useDispatch, useSelector} from "react-redux";
 import {getRepos} from "../../actions/auth";
-import photo1 from  '../../icons/1photo.jpg'
+import photo1 from  '../../icons/11photo.jpg'
 
 const Messager = () => {
     const dispatch = useDispatch()
