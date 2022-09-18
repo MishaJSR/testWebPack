@@ -18,6 +18,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: .5vw;
 }
 .menu {
   display: flex;
@@ -29,7 +30,12 @@
   display: flex;
   list-style: none;
   flex: 1 1 auto;
+  max-width: 90%;
   justify-content: center;
+  & .active{
+    background-color: #d294ff;
+    transition: .5s linear;
+  }
 }
 
 
@@ -70,3 +76,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.rigth_nav_panel{
+  padding: 0 2vw;
+}
+

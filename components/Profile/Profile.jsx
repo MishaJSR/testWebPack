@@ -64,8 +64,6 @@ const Profile = () => {
                     </div>
 
                 </div>
-                This is Profile
-                Hello!!! {nowUser.name}
             </div>
     )
 }

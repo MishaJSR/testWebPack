@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes, Navigate} from "react-router-dom";
 import FindFr from "../components/FindFr/FindFr";
-import Main from "../components/main/Main";
+import Messager from "../components/Messager/Messager";
 import Profile from "../components/Profile/Profile";
 import StartPage from "../components/StartPage/StartPage";
 import Login from "../components/Login/Login";
@@ -14,7 +14,7 @@ const AppRoute = ({isAuth}) => {
                 <Route path="/" element={<StartPage />} />
                 <Route path="/profile/:idUser" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
-                <Route path="/messages" element={<Main />} />
+                <Route path="/messages" element={<Messager />} />
                 <Route path="*" element={<StartPage/>}/>
             </Routes>
     ) :

@@ -9,6 +9,7 @@ import message from  '../../icons/send.png'
 import findlove from  '../../icons/findlove.png'
 import userimg from  '../../icons/user.png'
 import exit from  '../../icons/exit.png'
+import photo1 from  '../../icons/1photo.jpg'
 
 const Navbar = ({isAuth}) => {
 
@@ -18,10 +19,10 @@ const Navbar = ({isAuth}) => {
 
     return isAuth ?(
         <div className="cont-nav">
-            <NavLink className="hoverpink col-1"  to="/">
+            <NavLink className="hoverpink col-1 col-l-2 col-sm-3"  to="/">
                 <img className="img-box" src={logo} alt=""/>
             </NavLink>
-            <div className="menu__list">
+            <div className="menu__list col-4">
                         <NavLink className="hoverpink col-2 col-lg-3" to={"/profile/"+ activeUser}>
                             <img className="img-box" src={userimg} alt=""/>
                         </NavLink>
@@ -33,10 +34,10 @@ const Navbar = ({isAuth}) => {
                         </NavLink>
             </div>
             <div className="authUserInfo col-1 col-l-2 col-sm-3">
-                <NavLink className="hoverpink col-3 "  to={"/profile/"+ activeUser}>
-                    <img className="nullprofile round" src={nowUser.ava? nowUser.ava : userimg  } alt=""/>
+                <NavLink className="hoverpink col-3 col-lg-4"  to={"/profile/"+ activeUser}>
+                    <img className="nullprofile round" src={nowUser.ava? nowUser.ava : photo1  } alt=""/>
                 </NavLink>
-                <NavLink className="hoverpink col-3 "  to="/login" onClick={() => {
+                <NavLink className="hoverpink rigth_nav_panel col-3 col-lg-4 "  to="/login" onClick={() => {
                     localStorage.clear();
                     dispatch(setA(false))
                 }}>
