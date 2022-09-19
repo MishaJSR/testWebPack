@@ -10,6 +10,7 @@ import photo3 from  '../../icons/9photo.jpg'
 import photo4 from  '../../icons/10photo.jpg'
 import photo5 from  '../../icons/7photo.jpg'
 import photo6 from  '../../icons/12photo.jpg'
+import like from  '../../icons/findlove.png'
 
 
 const Profile = () => {
@@ -28,13 +29,25 @@ const Profile = () => {
                     <div className='userAva'>
                         <a className='ava_a'>
                             <img src={photo1}></img>
-                            <p className="user_blur_name"> {nowUser.name}</p>
+                            <p className="user_blur_name">
+                                <p>Misha</p>
+                                <p className='userStatus'>{nowUserInfo.status}</p>
+                            </p>
                         </a>
                     </div>
                     <div className='userInfo'>
-                        <div className='textInfo'>
-                            <div className='userStatus'>
-                                {nowUserInfo.status}
+                        <div className="user_statistic">
+                            <div className="statistic-block">
+                                <p className="statistic-label">Followers</p>
+                                <p className="statistic-value">124</p>
+                            </div>
+                            <div className="statistic-block">
+                                <p className="statistic-label">Photos</p>
+                                <p className="statistic-value">17</p>
+                            </div>
+                            <div className="statistic-block">
+                                <p className="statistic-label">Likes</p>
+                                <p className="statistic-value">6533</p>
                             </div>
                         </div>
                         <div className='genderInfo'>
@@ -51,12 +64,37 @@ const Profile = () => {
                 </div>
                 <div className='botInfo_container'>
                     <div className="botInfo">
-                        <a className='postImg'><img src={photo2}></img></a>
-                        <a className='postImg'><img src={photo3}></img></a>
-                        <a className='postImg'><img src={photo4}></img></a>
-                        <a className='postImg'><img src={photo5}></img></a>
-                        <a className='postImg'><img src={photo6}></img></a>
-                        <a className='postImg'><img src={photo1}></img></a>
+                        <a className='postImg'><img src={photo2}></img>
+                            <div className="likes_container">
+                                <span className="likes_count">124</span>
+                                <a className='like_button'><img src={like}></img></a>
+                            </div>
+                        </a>
+                        <a className='postImg'><img src={photo3}></img>
+                            <div className="likes_container">
+                                <span className="likes_count">124</span>
+                                <a className='like_button'><img src={like}></img></a>
+                            </div></a>
+                        <a className='postImg'><img src={photo4}></img>
+                            <div className="likes_container">
+                                <span className="likes_count">12443</span>
+                                <a className='like_button'><img src={like}></img></a>
+                            </div></a>
+                        <a className='postImg'><img src={photo5}></img>
+                            <div className="likes_container">
+                                <span className="likes_count">124</span>
+                                <a className='like_button'><img src={like}></img></a>
+                            </div></a>
+                        <a className='postImg'><img src={photo6}></img>
+                            <div className="likes_container">
+                                <span className="likes_count">124544</span>
+                                <a className='like_button'><img src={like}></img></a>
+                            </div></a>
+                        <a className='postImg'><img src={photo1}></img>
+                            <div className="likes_container">
+                                <span className="likes_count">124</span>
+                                <a className='like_button'><img src={like}></img></a>
+                            </div></a>
                     </div>
 
                 </div>

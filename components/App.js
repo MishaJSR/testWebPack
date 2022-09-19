@@ -7,6 +7,7 @@ import {checkAuth} from "../actions/auth";
 import {NavLink} from "react-router-dom";
 import {setA} from "../reducers/authReducer";
 import exit from "../icons/exit.png";
+import photo from "../icons/11photo.jpg";
 
 const App = () => {
 
@@ -22,11 +23,11 @@ const App = () => {
                 {isAuth&&
                     <div className="mobile_navbar">
                     <div className="authUserInfo">
-                        <NavLink className="hoverpink "  to="/login" onClick={() => {
+                        <NavLink className="hoverpink round-white" to={"/login"} onClick={() => {
                             localStorage.clear();
                             dispatch(setA(false))
                         }}>
-                            <img className="nullprofile" src={exit} alt=""/>
+                            <img className="nullprofile round" src={photo} alt="" />
                         </NavLink>
                     </div>
                 </div>}

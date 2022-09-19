@@ -141,7 +141,7 @@ legend {
 }
 
 .header-background{
-  width: 100%;
+  width: 100vw;
   background-color: #6e0eb7;
 }
 .col-1 {
@@ -359,8 +359,12 @@ legend {
   }
   .header-mobile{
     overflow: hidden;
-    position: fixed ;
+    position: fixed;
     bottom: 0;
+    z-index: 5;
+  }
+  .main{
+    padding-bottom: 60px;
   }
   .mobile_navbar{
     position: absolute;
@@ -368,14 +372,17 @@ legend {
     top: 0;
     width: 100vw;
     height: 40px;
-    background-color: #d3d3d3;
-    opacity: .3;
+    opacity: .5;
     flex-direction: row-reverse;
     z-index: 2;
+    &:hover{
+      opacity: 1;
+    }
     & .authUserInfo{
       gap: 1vw;
     }
   }
+
 }
 
 .pt-{
@@ -417,4 +424,8 @@ legend {
 
 .background-point {
   background-color: #000a30;
+}
+.round-white{
+  border-radius: 50%;
+  border: 2px solid white;
 }
