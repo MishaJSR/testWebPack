@@ -11,7 +11,9 @@ import photo4 from  '../../icons/10photo.jpg'
 import photo5 from  '../../icons/7photo.jpg'
 import photo6 from  '../../icons/12photo.jpg'
 import like from  '../../icons/findlove.png'
-
+import genequality from  '../../icons/gender-equality.png'
+import equality from  '../../icons/equality.png'
+import nochildren from  '../../icons/nochildren.png'
 
 const Profile = () => {
     const dispatch = useDispatch()
@@ -55,9 +57,9 @@ const Profile = () => {
                                 Preferences:
                             </div>
                             <div className='genderList'>
-                                <a className='genderImg'><img src={userimg}></img></a>
-                                <a className='genderImg'><img src={userimg}></img></a>
-                                <a className='genderImg'><img src={userimg}></img></a>
+                                <a className='genderImg'><img src={equality}></img></a>
+                                <a className='genderImg'><img src={genequality}></img></a>
+                                <a className='genderImg'><img src={nochildren}></img></a>
                             </div>
                         </div>
                     </div>
@@ -66,33 +68,33 @@ const Profile = () => {
                     <div className="botInfo">
                         <a className='postImg'><img src={photo2}></img>
                             <div className="likes_container">
-                                <span className="likes_count">124</span>
+                                <span className="likes_count">12</span>
                                 <a className='like_button'><img src={like}></img></a>
                             </div>
                         </a>
                         <a className='postImg'><img src={photo3}></img>
                             <div className="likes_container">
-                                <span className="likes_count">124</span>
+                                <span className="likes_count">63</span>
                                 <a className='like_button'><img src={like}></img></a>
                             </div></a>
                         <a className='postImg'><img src={photo4}></img>
                             <div className="likes_container">
-                                <span className="likes_count">12443</span>
+                                <span className="likes_count">6223</span>
                                 <a className='like_button'><img src={like}></img></a>
                             </div></a>
                         <a className='postImg'><img src={photo5}></img>
                             <div className="likes_container">
-                                <span className="likes_count">124</span>
+                                <span className="likes_count">853</span>
                                 <a className='like_button'><img src={like}></img></a>
                             </div></a>
                         <a className='postImg'><img src={photo6}></img>
                             <div className="likes_container">
-                                <span className="likes_count">124544</span>
+                                <span className="likes_count">3461</span>
                                 <a className='like_button'><img src={like}></img></a>
                             </div></a>
                         <a className='postImg'><img src={photo1}></img>
                             <div className="likes_container">
-                                <span className="likes_count">124</span>
+                                <span className="likes_count">7</span>
                                 <a className='like_button'><img src={like}></img></a>
                             </div></a>
                     </div>
