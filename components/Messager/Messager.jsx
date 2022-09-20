@@ -3,9 +3,11 @@ import classes from './Messager.less'
 import {useDispatch, useSelector} from "react-redux";
 import {getRepos} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
+import {useLocation, useMatch} from "react-router";
+import {useParams} from "react-router-dom";
 
-const Messager = () => {
-    const dispatch = useDispatch()
+const Messager = (props) => {
+    const dispatch = useDispatch();
 
     return (
         <div className='messageInfo'>

@@ -8,11 +8,13 @@ import {NavLink} from "react-router-dom";
 import {setA} from "../reducers/authReducer";
 import exit from "../icons/exit.png";
 import photo from "../icons/11photo.jpg";
+import {useLocation} from "react-router";
 
 const App = () => {
 
     const isAuth = useSelector(state => state.auth.isAuth);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const {pathname} = useLocation();
 
     useEffect(() => {
         dispatch(checkAuth());
@@ -31,7 +33,7 @@ const App = () => {
                         </NavLink>
                     </div>
                 </div>}
-                <div className="header-background header-mobile">
+                <div className={"header-background " + ((pathname.indexOf("message") < 0)? "header-mobile" : "header-mobile-none")}>
                     <div className="header">
                         <Navbar isAuth={isAuth}/>
                     </div>
