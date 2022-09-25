@@ -14,12 +14,16 @@ import like from  '../../icons/findlove.png'
 import genequality from  '../../icons/gender-equality.png'
 import equality from  '../../icons/equality.png'
 import nochildren from  '../../icons/nochildren.png'
+import FullScreen from "../FullScreen/FullScreen";
+import {setFullScreen} from "../../reducers/profileReducer";
+
 
 const Profile = () => {
     const dispatch = useDispatch()
     const nowUser = useSelector(state => state.profile.nowUser)
     const nowUserInfo = useSelector(state => state.profile.nowUserInfo)
     const {idUser} = useParams();
+    const fullScreen = useSelector(state => state.profile.fullScreen)
 
     useEffect(() => {
         dispatch(setProfileInfo(idUser))
@@ -27,6 +31,7 @@ const Profile = () => {
 
     return (
             <div>
+                {fullScreen && <FullScreen photo={photo3}/>}
                 <div className="top_userInfo">
                     <div className='userAva'>
                         <a className='ava_a'>
@@ -72,7 +77,7 @@ const Profile = () => {
                                 <a className='like_button'><img src={like}></img></a>
                             </div>
                         </a>
-                        <a className='postImg'><img src={photo3}></img>
+                        <a className='postImg'><img src={photo3} onClick={() => dispatch(setFullScreen(true))}></img>
                             <div className="likes_container">
                                 <span className="likes_count">63</span>
                                 <a className='like_button'><img src={like}></img></a>
