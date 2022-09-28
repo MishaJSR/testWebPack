@@ -15,7 +15,7 @@ import genequality from  '../../icons/gender-equality.png'
 import equality from  '../../icons/equality.png'
 import nochildren from  '../../icons/nochildren.png'
 import FullScreen from "../FullScreen/FullScreen";
-import {setFullScreen} from "../../reducers/profileReducer";
+import {setFullScreen, setSliderPosition} from "../../reducers/profileReducer";
 
 
 const Profile = () => {
@@ -24,6 +24,18 @@ const Profile = () => {
     const nowUserInfo = useSelector(state => state.profile.nowUserInfo)
     const {idUser} = useParams();
     const fullScreen = useSelector(state => state.profile.fullScreen)
+    const photos = useSelector(state => state.profile.photo);
+
+    const listPhotos = photos.map((e, index) =>
+        <a key={index} className='postImg'><img src={e} onClick={() => {
+            dispatch(setFullScreen(true));
+            dispatch(setSliderPosition(index));
+        }}></img>
+            <div className="likes_container">
+                <span className="likes_count">63</span>
+                <a className='like_button'><img src={like}></img></a>
+            </div>
+        </a>);
 
     useEffect(() => {
         dispatch(setProfileInfo(idUser))
@@ -71,39 +83,8 @@ const Profile = () => {
                 </div>
                 <div className='botInfo_container'>
                     <div className="botInfo">
-                        <a className='postImg'><img src={photo2}></img>
-                            <div className="likes_container">
-                                <span className="likes_count">12</span>
-                                <a className='like_button'><img src={like}></img></a>
-                            </div>
-                        </a>
-                        <a className='postImg'><img src={photo3} onClick={() => dispatch(setFullScreen(true))}></img>
-                            <div className="likes_container">
-                                <span className="likes_count">63</span>
-                                <a className='like_button'><img src={like}></img></a>
-                            </div></a>
-                        <a className='postImg'><img src={photo4}></img>
-                            <div className="likes_container">
-                                <span className="likes_count">6223</span>
-                                <a className='like_button'><img src={like}></img></a>
-                            </div></a>
-                        <a className='postImg'><img src={photo5}></img>
-                            <div className="likes_container">
-                                <span className="likes_count">853</span>
-                                <a className='like_button'><img src={like}></img></a>
-                            </div></a>
-                        <a className='postImg'><img src={photo6}></img>
-                            <div className="likes_container">
-                                <span className="likes_count">3461</span>
-                                <a className='like_button'><img src={like}></img></a>
-                            </div></a>
-                        <a className='postImg'><img src={photo1}></img>
-                            <div className="likes_container">
-                                <span className="likes_count">7</span>
-                                <a className='like_button'><img src={like}></img></a>
-                            </div></a>
+                        {listPhotos}
                     </div>
-
                 </div>
             </div>
     )
