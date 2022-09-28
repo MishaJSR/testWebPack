@@ -6,15 +6,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {getRepos} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 
+
 const FindFr = () => {
+    const dispatch = useDispatch()
+    const fullScreen = useSelector(state => state.profile.fullScreen);
+    const sliderPosition = useSelector(state => state.profile.sliderPosition);
+    const photos = useSelector(state => state.profile.photo);
 
     return (
-        <div></div>
-    //         <div className="findFriend">
-    //     <a>
-    //         <img src={photo1}></img>
-    //     </a>
-    // </div>
+            <a onDoubleClick={() => dispatch(setSliderActive(sliderPosition - 1))} className="findFriend">
+                    <img src={photos[sliderPosition]}></img>
+            </a>
     )
 }
 
