@@ -1,38 +1,73 @@
 @import "../../styles/var.less";
 
+.mess_area{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #4b0186;
+}
+.message_top_nav{
+  width: 100%;
+  height: 40px;
+  color: white;
+}
+.message_search_area{
+  position: relative;
+  color: white;
+  margin: 2vw 2vw;
+  & input {
+    width: 100%;
+    height: 30px;
+    padding-left: 40px;
+    border: 2px solid white;
+  }
+  & img {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    width: 20px;
+    height: 20px;
+  }
+}
 .messageInfo{
   display: flex;
   height: auto;
-  min-height: calc(100vh - @navhieght);
   width: 100%;
   flex-direction: column;
-  background-color: rgb(83, 114, 141);
   padding: 0 1vw;
 }
 
 .messBlock{
   display: flex;
   height: 80px;
-  background-color: rgb(83, 114, 141);
   padding: 0 1vw;
   color: white;
-  border-bottom: 2px solid rgb(22, 81, 110);
+
   &:hover{
-    background-color: rgb(22, 81, 110);
+    background-color: #2e0152;
   }
 }
 
 .mess_ava{
+  display: flex;
+  align-items: center;
   padding-top: 7px;
+  flex: 0 0 50px;
+  padding-right: 10px;
   & img {
+
     width: 50px;
     height: 50px;
   }
 }
 
 .mess_userInfo{
-  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  margin-right: 20px;
   padding-top: 7px;
+  border-bottom: 2px solid #18002c;
 }
 
 .mess_userName{
@@ -47,9 +82,8 @@
   max-width: 80%;
 }
 
-@media screen and (max-width:576px) {
-  .messageInfo{
-    padding-top: 40px;
-    min-height: 100vh;
+@media screen and (min-width:576px) {
+  .mess_area{
+    min-height: calc(100vh - @navhieght) !important;
   }
 }

@@ -38,7 +38,7 @@ const App = () => {
                         <Navbar isAuth={isAuth}/>
                     </div>
                 </div>
-                <div className="main col-8 col-md-12 background-point">
+                <div className={(pathname.indexOf("message") < 0)? "main col-8 col-md-12 background-point": "main main-message col-8 col-md-12 background-point"}>
                     <AppRoute isAuth={isAuth}/>
                 </div>
             </div>

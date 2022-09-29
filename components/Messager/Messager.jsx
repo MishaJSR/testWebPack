@@ -3,6 +3,7 @@ import classes from './Messager.less'
 import {useDispatch, useSelector} from "react-redux";
 import {getRepos} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
+import searchicon from  '../../icons/search.png'
 import {useLocation, useMatch} from "react-router";
 import {useParams} from "react-router-dom";
 
@@ -10,6 +11,14 @@ const Messager = (props) => {
     const dispatch = useDispatch();
 
     return (
+        <div className="mess_area">
+            <div className="message_top_nav">
+                Messages
+            </div>
+            <div className="message_search_area">
+                <input placeholder="search" type="text" />
+                <img src={searchicon} alt=""/>
+            </div>
         <div className='messageInfo'>
                 <a className='messBlock'>
                     <a className='mess_ava '>
@@ -132,7 +141,7 @@ const Messager = (props) => {
                 </div>
             </a>
 
-
+        </div>
         </div>
     )
 }
