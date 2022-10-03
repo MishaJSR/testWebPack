@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import searchicon from  '../../icons/search.png'
 import backbutton from  '../../icons/back-button.png'
 import {NavLink, Link, useParams, useNavigate} from "react-router-dom";
+import {findNameMessageSlected} from "../../reducers/messageReducer";
 
 const Messager = (props) => {
     const dispatch = useDispatch();
@@ -13,7 +14,10 @@ const Messager = (props) => {
 
 
     const messageList = messageFriends.map((e, index) =>
-        <a onClick={() => navigate(`/messages/${e.id}`)} key={index} className='messBlock'>
+        <a onClick={() => {
+            dispatch(findNameMessageSlected(e.id))
+            navigate(`/messages/${e.id}`)
+        }} key={index} className='messBlock'>
             <a className='mess_ava '>
                 <img className="round" src={e.photo}></img>
             </a>
