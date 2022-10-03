@@ -1,146 +1,49 @@
 import React, {useEffect} from "react";
 import classes from './Messager.less'
 import {useDispatch, useSelector} from "react-redux";
-import {getRepos} from "../../actions/auth";
-import photo1 from  '../../icons/11photo.jpg'
 import searchicon from  '../../icons/search.png'
-import {useLocation, useMatch} from "react-router";
-import {useParams} from "react-router-dom";
+import backbutton from  '../../icons/back-button.png'
+import {NavLink, Link, useParams, useNavigate} from "react-router-dom";
 
 const Messager = (props) => {
     const dispatch = useDispatch();
+    const activeUser = useSelector(state => state.auth.activeUserId)
+    const messageFriends = useSelector(state => state.message.friendsMass)
+    const navigate = useNavigate();
+
+
+    const messageList = messageFriends.map((e, index) =>
+        <a onClick={() => navigate(`/messages/${e.id}`)} key={index} className='messBlock'>
+            <a className='mess_ava '>
+                <img className="round" src={e.photo}></img>
+            </a>
+            <div className='mess_userInfo'>
+                <div className='mess_textInfo'>
+                    <div className='mess_userName'>
+                        {e.name}
+                    </div>
+                    <div className='mess_LastMessage'>
+                        {e.lastMess}
+                    </div>
+                </div>
+            </div>
+        </a>
+    );
 
     return (
         <div className="mess_area">
             <div className="message_top_nav">
                 Messages
+                <NavLink to={"/profile/" + activeUser}>
+                <img src={backbutton} alt=""/>
+                </NavLink>
             </div>
             <div className="message_search_area">
-                <input placeholder="search" type="text" />
+                <input placeholder="Search" type="text" />
                 <img src={searchicon} alt=""/>
             </div>
         <div className='messageInfo'>
-                <a className='messBlock'>
-                    <a className='mess_ava '>
-                        <img className="round" src={photo1}></img>
-                    </a>
-                    <div className='mess_userInfo'>
-                        <div className='mess_textInfo'>
-                            <div className='mess_userName'>
-                                Василий
-                            </div>
-                            <div className='mess_LastMessage'>
-                                Привет
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a className='messBlock'>
-                <a className='mess_ava '>
-                    <img className="round" src={photo1}></img>
-                </a>
-                <div className='mess_userInfo'>
-                    <div className='mess_textInfo'>
-                        <div className='mess_userName'>
-                            Василий
-                        </div>
-                        <div className='mess_LastMessage'>
-                            Привет
-                        </div>
-                    </div>
-                </div>
-            </a>
-
+            {messageList}
         </div>
         </div>
     )

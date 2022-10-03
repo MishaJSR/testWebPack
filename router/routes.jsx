@@ -6,6 +6,7 @@ import Profile from "../components/Profile/Profile";
 import StartPage from "../components/StartPage/StartPage";
 import Login from "../components/Login/Login";
 import Registration from "../components/Registration/Registration";
+import MessageField from "../components/MessageField/MessageField";
 
 const AppRoute = ({isAuth}) => {
 
@@ -15,6 +16,7 @@ const AppRoute = ({isAuth}) => {
                 <Route path="/profile/:idUser" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
                 <Route path="/messages" element={<Messager />} />
+                <Route path="/messages/:idUser" element={<MessageField />} />
                 <Route path="*" element={<StartPage/>}/>
             </Routes>
     ) :

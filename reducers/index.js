@@ -4,10 +4,12 @@ import profileReducer from "./profileReducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 import authReducer from "./authReducer";
+import messageReducer from "./messageReducer";
 
 const rootReducer = combineReducers({
     profile: profileReducer,
     auth: authReducer,
+    message: messageReducer
 
 })
 

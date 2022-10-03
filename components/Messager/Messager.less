@@ -7,19 +7,35 @@
   background-color: #4b0186;
 }
 .message_top_nav{
-  width: 100%;
-  height: 40px;
+  display: flex;
+  position: relative;
   color: white;
+  margin: 2vw 2vw;
+  width: 100%;
+  height: 30px;
+  padding-left: 40px;
+  align-items: center;
+  z-index: 3;
+  & img {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+  }
 }
 .message_search_area{
   position: relative;
   color: white;
-  margin: 2vw 2vw;
+  margin: 0vw 2vw 2vw 2vw;
   & input {
     width: 100%;
     height: 30px;
     padding-left: 40px;
-    border: 2px solid white;
+    background-color: #2e0152;
+    border-radius: 8px;
   }
   & img {
     position: absolute;
@@ -64,23 +80,25 @@
 .mess_userInfo{
   display: flex;
   align-items: center;
-  flex: 1 1 auto;
+  width: 100%;
   margin-right: 20px;
   padding-top: 7px;
-  border-bottom: 2px solid #18002c;
+  border-bottom: 1px solid #18002c;
 }
 
-.mess_userName{
-  font-size: 1.3rem;
-  padding-bottom: 5px;
+.mess_textInfo{
+  max-width: 60vw;
+  .mess_userName {
+    font-size: 1.3rem;
+    padding-bottom: 5px;
+  }
+  .mess_LastMessage{
+    font-size: .7rem;
+    max-height: .9rem;
+    overflow: hidden;
+  }
 }
 
-.mess_LastMessage{
-  font-size: .7rem;
-  max-height: 1.7rem;
-  overflow: hidden;
-  max-width: 80%;
-}
 
 @media screen and (min-width:576px) {
   .mess_area{
