@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getRepos} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 import backbutton from "../../icons/back-button.png";
+import message_send_icon from  '../../icons/send.png'
 
 
 const MessageField = () => {
@@ -24,6 +25,7 @@ const MessageField = () => {
     );
 
     return (
+        <>
             <div className="messageListWrapper">
                 <div className="message_top_name">
                     {nameSelected}
@@ -38,6 +40,13 @@ const MessageField = () => {
                     {messageItems}
                 </div>
             </div>
+            <div className="fixed_test_edit">
+                <textarea type="text" className="text_edit"/>
+                <a href="" className="send_button">
+                    <img src={message_send_icon} alt=""/>
+                </a>
+            </div>
+        </>
     )
 }
 
