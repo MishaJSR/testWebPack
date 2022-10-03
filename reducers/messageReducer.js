@@ -9,6 +9,7 @@ const FIND_NAME_SELECTED = 'FIND_NAME_SELECTED'
 const defaultState = {
     isFetching: false,
     nameSelected: null,
+    photoSelected: null,
     errorMessage: null,
     friendsMass: [
         {
@@ -81,12 +82,17 @@ export default  function messageReducer(state= defaultState, action){
     switch (action.type) {
         case FIND_NAME_SELECTED:
             let findName;
+            let findphotoSelected;
             state.friendsMass.map((e) => {
-                if (e.id === action.payload) findName = e.name;
+                if (e.id === action.payload) {
+                    findName = e.name;
+                    findphotoSelected = e.photo;
+                }
             });
             return {
                 ...state,
-                nameSelected: findName
+                nameSelected: findName,
+                photoSelected: findphotoSelected
             }
 
         default:

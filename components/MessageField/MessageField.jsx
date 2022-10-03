@@ -11,6 +11,7 @@ import backbutton from "../../icons/back-button.png";
 const MessageField = () => {
     const dispatch = useDispatch()
     const nameSelected = useSelector(state => state.message.nameSelected);
+    const photoSelected = useSelector(state => state.message.photoSelected);
     const messageUserList = useSelector(state => state.message.messageMass);
     const friendsMass = useSelector(state => state.message.friendsMass);
     const nowUser = useSelector(state => state.profile.nowUser)
@@ -27,7 +28,10 @@ const MessageField = () => {
                 <div className="message_top_name">
                     {nameSelected}
                     <NavLink to={"/messages"}>
-                        <img src={backbutton} alt=""/>
+                        <img className="icon_back_messager"  src={backbutton} alt=""/>
+                    </NavLink>
+                    <NavLink to={"/messages"}>
+                        <img className="ava_messager" src={photoSelected} alt=""/>
                     </NavLink>
                 </div>
                 <div className="message_text_container">
