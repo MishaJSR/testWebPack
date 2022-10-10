@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import classes from './MessageField.less'
 import {NavLink} from "react-router-dom";
 import {setFullScreen, setSearch, setSliderActive} from "../../reducers/profileReducer";
@@ -16,17 +16,21 @@ const MessageField = () => {
     const messageUserList = useSelector(state => state.message.messageMass);
     const friendsMass = useSelector(state => state.message.friendsMass);
     const nowUser = useSelector(state => state.profile.nowUser)
+    const h2ref = useRef(null);
 
+    useLayoutEffect(() => {
+        h2ref.current.scrollIntoView({block: "end", inline: "nearest"});
+    }, []);
 
     const messageItems = messageUserList.map((e, index) =>
-        <div key={index} className={(nowUser.id === e.idAdder)? 'mess_textBlock_reverse message_size' : 'mess_textBlock message_size'}>
+        <span key={index} className={(nowUser.id === e.idAdder)? 'mess_textBlock_reverse message_size' : 'mess_textBlock message_size'}>
             {e.text}
-        </div>
+        </span>
     );
 
     return (
         <>
-            <div className="messageListWrapper">
+            <div ref={h2ref} className="messageListWrapper">
                 <div className="message_top_name">
                     {nameSelected}
                     <NavLink to={"/messages"}>

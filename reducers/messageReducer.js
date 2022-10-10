@@ -103,6 +103,52 @@ const defaultState = {
             id: 6,
             idAdder: 37,
             text: "Hi Bro"
+        },
+        {
+            id: 4,
+            idAdder: 3,
+            text: "Hi Bro"
+        },
+        {
+            id: 5,
+            idAdder: 37,
+            text: "Hello"
+        },
+        {
+            id: 6,
+            idAdder: 37,
+            text: "Hi Bro"
+        },
+        {
+            id: 4,
+            idAdder: 3,
+            text: "Hi Bro"
+        },
+        {
+            id: 5,
+            idAdder: 37,
+            text: "Hello"
+        },
+        {
+            id: 6,
+            idAdder: 37,
+            text: "Hi Bro"
+        }
+        ,
+        {
+            id: 4,
+            idAdder: 3,
+            text: "Hi Bro"
+        },
+        {
+            id: 5,
+            idAdder: 37,
+            text: "Hello"
+        },
+        {
+            id: 6,
+            idAdder: 37,
+            text: "Hi Bro"
         }
     ]
 }
