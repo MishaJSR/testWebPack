@@ -11,6 +11,7 @@ const defaultState = {
     nameSelected: null,
     photoSelected: null,
     errorMessage: null,
+    anotherId: null,
     friendsMass: [
         {
             id: 3,

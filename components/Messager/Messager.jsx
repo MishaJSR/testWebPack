@@ -10,12 +10,16 @@ const Messager = (props) => {
     const dispatch = useDispatch();
     const activeUser = useSelector(state => state.auth.activeUserId)
     const messageFriends = useSelector(state => state.message.friendsMass)
+    const myUser = useSelector(state => state.auth.myUser);
     const navigate = useNavigate();
 
+    useEffect(() => {
+    }, [])
 
-    const messageList = messageFriends.map((e, index) =>
+
+    const messageList = messageFriends.map((e, index) => {
+        if (true)  return (
         <a onClick={() => {
-            dispatch(findNameMessageSlected(e.id))
             navigate(`/messages/${e.id}`)
         }} key={index} className='messBlock'>
             <a className='mess_ava '>
@@ -32,7 +36,8 @@ const Messager = (props) => {
                 </div>
             </div>
         </a>
-    );
+        )
+    });
 
     return (
         <div className="mess_area">

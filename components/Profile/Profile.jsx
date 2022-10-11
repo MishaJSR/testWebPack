@@ -61,7 +61,7 @@ const Profile = () => {
                             </div>
                             <div className="statistic-block">
                                 <p className="statistic-label">Photos</p>
-                                <p className="statistic-value">17</p>
+                                <p className="statistic-value">{myUser.userPhotos.length}</p>
                             </div>
                             <div className="statistic-block">
                                 <p className="statistic-label">Likes</p>
