@@ -16,6 +16,7 @@ import equality from  '../../icons/equality.png'
 import nochildren from  '../../icons/nochildren.png'
 import FullScreen from "../FullScreen/FullScreen";
 import {setFullScreen, setSliderPosition} from "../../reducers/profileReducer";
+import {staticURL} from "../../actions/auth";
 
 
 const Profile = () => {
@@ -25,9 +26,10 @@ const Profile = () => {
     const {idUser} = useParams();
     const fullScreen = useSelector(state => state.profile.fullScreen)
     const photos = useSelector(state => state.profile.photo);
+    const myUser = useSelector(state => state.auth.myUser);
 
-    const listPhotos = photos.map((e, index) =>
-        <a key={index} className='postImg'><img src={e} onClick={() => {
+    const listPhotos = myUser.userPhotos.map((e, index) =>
+        <a key={index} className='postImg'><img src={staticURL + e.photo} onClick={() => {
             dispatch(setFullScreen(true));
             dispatch(setSliderPosition(index));
         }}></img>
@@ -37,9 +39,6 @@ const Profile = () => {
             </div>
         </a>);
 
-    useEffect(() => {
-        dispatch(setProfileInfo(idUser))
-    }, [])
 
     return (
             <div>
@@ -47,10 +46,10 @@ const Profile = () => {
                 <div className="top_userInfo">
                     <div className='userAva'>
                         <a className='ava_a'>
-                            <img src={photo1}></img>
+                            <img src={"http://localhost:5000/" + myUser.ava}></img>
                             <p className="user_blur_name">
-                                <p>Misha</p>
-                                <p className='userStatus'>{nowUserInfo.status}</p>
+                                <p>{myUser.name}</p>
+                                <p className='userStatus'>{"yee"}</p>
                             </p>
                         </a>
                     </div>

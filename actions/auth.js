@@ -1,7 +1,8 @@
 import axios from "axios";
-import { setUsers} from "../reducers/profileReducer";
 import React from "react";
-import {setA, setAuthError, setAuthFetch, setMyId} from "../reducers/authReducer";
+import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
+
+export const staticURL = "http://localhost:5000/"
 
 export const getRepos = () => {
     return async (dispatch) => {
@@ -16,6 +17,7 @@ export const logIn = (email, password, navigate) => {
         await axios.post("http://localhost:5000/auth/login", {email: email, password: password})
             .then(response => {
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('id', response.data.id);
                 dispatch(setMyId(response.data.id))
                 dispatch(setA(true));
                 dispatch(setAuthError(false))
@@ -61,6 +63,25 @@ export const checkAuth = () => {
             })
             .catch(err => {
                 dispatch(setA(false));
+            })
+    }
+}
+
+export const setAllUsers = (id) => {
+    return async (dispatch) => {
+        await axios.get(`http://localhost:5000/users`)
+            .then(response => {
+                dispatch(setAll(response.data))
+            })
+            .catch(err => {
+                console.log("error")
+            })
+        await axios.get(`http://localhost:5000/users/${id}`)
+            .then(response => {
+                dispatch(setMe(response.data))
+            })
+            .catch(err => {
+                console.log("error")
             })
     }
 }

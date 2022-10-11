@@ -3,24 +3,28 @@ import AppRoute from "../router/routes";
 import Navbar from "./Navbar/Navbar";
 import './App.less'
 import {useDispatch, useSelector} from "react-redux";
-import {checkAuth} from "../actions/auth";
+import {checkAuth, setAllUsers, staticURL} from "../actions/auth";
 import {NavLink} from "react-router-dom";
 import {setA} from "../reducers/authReducer";
 import exit from "../icons/exit.png";
 import photo from "../icons/11photo.jpg";
+import loaderImg from "../icons/loading_app.png";
 import {useLocation} from "react-router";
+import PreloaderLogin from "./Preloaders/PreloaderLogin";
 
 const App = () => {
 
     const isAuth = useSelector(state => state.auth.isAuth);
+    const myUser = useSelector(state => state.auth.myUser);
     const dispatch = useDispatch();
     const {pathname} = useLocation();
 
     useEffect(() => {
         dispatch(checkAuth());
-    });
+        dispatch(setAllUsers(localStorage.getItem('id')))
+    }, []);
 
-    return (
+    return (myUser?
             <div className="wrapper">
                 {isAuth&&
                     <div className="mobile_navbar">
@@ -29,7 +33,7 @@ const App = () => {
                             localStorage.clear();
                             dispatch(setA(false))
                         }}>
-                            <img className="nullprofile round" src={photo} alt="" />
+                            <img className="nullprofile round" src={staticURL + myUser.ava} alt="" />
                         </NavLink>
                     </div>
                 </div>}
@@ -42,6 +46,7 @@ const App = () => {
                     <AppRoute isAuth={isAuth}/>
                 </div>
             </div>
+            : <PreloaderLogin img={loaderImg}/>
         )
 }
 

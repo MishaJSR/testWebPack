@@ -5,6 +5,7 @@ import {logIn} from "../../actions/auth";
 import { NavLink, useNavigate} from "react-router-dom";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 import {setAuthError} from "../../reducers/authReducer";
+import heart from '../../icons/heart.png'
 
 const Login = () => {
 
@@ -25,7 +26,7 @@ const Login = () => {
                     <input type="password" onChange={(e) => setPass(e.target.value)} placeholder="Password"/>
 
                     <NavLink  className={isFetch? "disabled-link but-login" : " but-login"} onClick={() =>  dispatch(logIn(email, pass, navigate))} to="">
-                        {isFetch? <PreloaderLogin/> : "Login"}
+                        {isFetch? <PreloaderLogin img={heart}/> : "Login"}
                     </NavLink>
                         <p className="p-not-reg">Not registered? </p>
                             <NavLink className="a-create-acc" onClick={() => dispatch(setAuthError(false))} to="/registration">Create an account</NavLink>

@@ -1,14 +1,15 @@
 import React, {useEffect} from "react";
 import classes from './PreloaderLogin.less'
-import heart from '../../icons/heart.png'
 
-const PreloaderLogin = () => {
+const PreloaderLogin = ({img}) => {
 
 
     return (
+        <div className="preloader-back">
             <div className="preloader-heart">
-                <img src={heart}/>
+                <img src={img}/>
             </div>
+        </div>
     )
 }
 

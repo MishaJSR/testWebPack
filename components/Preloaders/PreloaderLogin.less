@@ -1,5 +1,17 @@
+.preloader-back{
+  background-color: #000a30;
+}
 .preloader-heart {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation:1s preloader-heart infinite linear;
+  & img {
+    width: 20vw;
+    height: 20vw;
+  }
 }
 
 @keyframes preloader-heart{

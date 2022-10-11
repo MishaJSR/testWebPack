@@ -2,6 +2,8 @@ const SET_AUTH = 'SET_AUTH'
 const SET_AUTH_FETCH = 'SET_AUTH_FETCH'
 const SET_AUTH_ERROR = 'SET_AUTH_ERROR'
 const SET_ACTIVE_ID = 'SET_ACTIVE_ID'
+const SET_ALL = 'SET_ALL'
+const SET_ME = 'SET_ME'
 
 
 const defaultState = {
@@ -9,7 +11,9 @@ const defaultState = {
     isFetching: false,
     errorMessage: null,
     activeUserId: null,
-    gendersPool: ['Men', 'Woomen' , 'Gey', 'Lesbi']
+    gendersPool: ['Men', 'Woomen' , 'Gey', 'Lesbi'],
+    all: null,
+    myUser: null
 }
 
 
@@ -40,6 +44,18 @@ export default  function authReducer(state= defaultState, action){
                 errorMessage: action.payload
             }
 
+        case SET_ALL:
+            return {
+                ...state,
+                all: action.payload
+            }
+
+        case SET_ME:
+            return {
+                ...state,
+                myUser: action.payload
+            }
+
 
         default:
             return state
@@ -54,3 +70,7 @@ export const setAuthFetch = (bool) => ({type: SET_AUTH_FETCH, payload: bool})
 export const setAuthError = (err) => ({type: SET_AUTH_ERROR, payload: err})
 
 export const setMyId = (id) => ({type: SET_ACTIVE_ID, payload: id})
+
+export const setAll = (us) => ({type: SET_ALL, payload: us})
+
+export const setMe = (us) => ({type: SET_ME, payload: us})
