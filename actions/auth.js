@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
+import {setChats} from "../reducers/messageReducer";
 
 export const staticURL = "http://localhost:5000/"
 
@@ -71,7 +72,7 @@ export const setAllUsers = (id) => {
     return async (dispatch) => {
         await axios.get(`http://localhost:5000/users`)
             .then(response => {
-                dispatch(setAll(response.data))
+                dispatch(setAll(response.data));
             })
             .catch(err => {
                 console.log("error")
@@ -83,7 +84,31 @@ export const setAllUsers = (id) => {
             .catch(err => {
                 console.log("error")
             })
+        await axios.get(`http://localhost:5000/chats/${id}`)
+            .then(response => {
+                dispatch(setChats(response.data))
+            })
+            .catch(err => {
+                console.log("error")
+            })
+
     }
 }
 
+export const getChats = (id) => {
+    return async (dispatch) => {
+        await axios.get(`http://localhost:5000/chats/${id}`)
+            .then(response => {
+                dispatch(setChats(response.data))
+            })
+            .catch(err => {
+                console.log("error")
+            })
+    }
+}
+
+export const getImage = (str) => {
+    const newStr = staticURL + str
+    return newStr
+}
 

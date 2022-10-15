@@ -6,6 +6,7 @@ const SET_ALL = 'SET_ALL'
 const SET_ME = 'SET_ME'
 
 
+
 const defaultState = {
     isAuth: false,
     isFetching: false,
@@ -13,7 +14,7 @@ const defaultState = {
     activeUserId: null,
     gendersPool: ['Men', 'Woomen' , 'Gey', 'Lesbi'],
     all: null,
-    myUser: null
+    myUser: null,
 }
 
 
@@ -57,6 +58,8 @@ export default  function authReducer(state= defaultState, action){
             }
 
 
+
+
         default:
             return state
     }
@@ -74,3 +77,4 @@ export const setMyId = (id) => ({type: SET_ACTIVE_ID, payload: id})
 export const setAll = (us) => ({type: SET_ALL, payload: us})
 
 export const setMe = (us) => ({type: SET_ME, payload: us})
+

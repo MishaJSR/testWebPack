@@ -5,6 +5,7 @@ import photo4 from  '../icons/8photo.jpg'
 import photo5 from  '../icons/9photo.jpg'
 
 const FIND_NAME_SELECTED = 'FIND_NAME_SELECTED'
+const SET_CHATS = 'SET_CHATS'
 
 const defaultState = {
     isFetching: false,
@@ -12,6 +13,7 @@ const defaultState = {
     photoSelected: null,
     errorMessage: null,
     anotherId: null,
+    chats: null,
     friendsMass: [
         {
             id: 3,
@@ -171,6 +173,11 @@ export default  function messageReducer(state= defaultState, action){
                 nameSelected: findName,
                 photoSelected: findphotoSelected
             }
+        case SET_CHATS:
+            return {
+                ...state,
+                chats: action.payload
+            }
 
         default:
             return state
@@ -178,3 +185,4 @@ export default  function messageReducer(state= defaultState, action){
 }
 
 export const findNameMessageSlected = (id) => ({type: FIND_NAME_SELECTED, payload: id})
+export const setChats = (us) => ({type: SET_CHATS, payload: us})

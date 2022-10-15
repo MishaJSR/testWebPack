@@ -5,41 +5,22 @@ import searchicon from  '../../icons/search.png'
 import backbutton from  '../../icons/back-button.png'
 import {NavLink, Link, useParams, useNavigate} from "react-router-dom";
 import {findNameMessageSlected} from "../../reducers/messageReducer";
+import {checkAuth, getChats, setAllUsers} from "../../actions/auth";
+import loaderImg from "../../icons/loading_app.png";
+import PreloaderLogin from "../Preloaders/PreloaderLogin";
+import MessageList from "../MessageList/MessageList";
 
 const Messager = (props) => {
     const dispatch = useDispatch();
     const activeUser = useSelector(state => state.auth.activeUserId)
     const messageFriends = useSelector(state => state.message.friendsMass)
     const myUser = useSelector(state => state.auth.myUser);
+    const chats = useSelector(state => state.message.chats)
     const navigate = useNavigate();
 
-    useEffect(() => {
-    }, [])
 
 
-    const messageList = messageFriends.map((e, index) => {
-        if (true)  return (
-        <a onClick={() => {
-            navigate(`/messages/${e.id}`)
-        }} key={index} className='messBlock'>
-            <a className='mess_ava '>
-                <img className="round" src={e.photo}></img>
-            </a>
-            <div className='mess_userInfo'>
-                <div className='mess_textInfo'>
-                    <div className='mess_userName'>
-                        {e.name}
-                    </div>
-                    <div className='mess_LastMessage'>
-                        {e.lastMess}
-                    </div>
-                </div>
-            </div>
-        </a>
-        )
-    });
-
-    return (
+    return ((chats)?
         <div className="mess_area">
             <div className="message_top_nav">
                 Messages
@@ -52,9 +33,11 @@ const Messager = (props) => {
                 <img src={searchicon} alt=""/>
             </div>
         <div className='messageInfo'>
-            {messageList}
+            {chats.map((e, index) => <MessageList e={e} id={activeUser} navigate={navigate} index={index}/>)}
         </div>
         </div>
+            :
+            <PreloaderLogin img={loaderImg}/>
     )
 }
 
