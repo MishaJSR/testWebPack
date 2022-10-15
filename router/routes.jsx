@@ -16,7 +16,7 @@ const AppRoute = ({isAuth}) => {
                 <Route path="/profile/:idUser" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
                 <Route path="/messages" element={<Messager />} />
-                <Route path="/messages/:idUser" element={<MessageField />} />
+                <Route path="/messages/:idChat" element={<MessageField />} />
                 <Route path="*" element={<StartPage/>}/>
             </Routes>
     ) :

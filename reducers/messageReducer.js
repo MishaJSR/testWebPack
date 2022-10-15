@@ -6,6 +6,8 @@ import photo5 from  '../icons/9photo.jpg'
 
 const FIND_NAME_SELECTED = 'FIND_NAME_SELECTED'
 const SET_CHATS = 'SET_CHATS'
+const SET_NOW_CHAT = 'SET_NOW_CHAT'
+const SET_LOADING = 'SET_LOADING'
 
 const defaultState = {
     isFetching: false,
@@ -14,6 +16,9 @@ const defaultState = {
     errorMessage: null,
     anotherId: null,
     chats: null,
+    nowChat: null,
+    isSecond: null,
+    messageLoading: true,
     friendsMass: [
         {
             id: 3,
@@ -178,6 +183,18 @@ export default  function messageReducer(state= defaultState, action){
                 ...state,
                 chats: action.payload
             }
+        case SET_NOW_CHAT:
+            return {
+                ...state,
+                nowChat: action.payload,
+                isSecond: action.bool
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                messageLoading: action.payload
+            }
+
 
         default:
             return state
@@ -186,3 +203,5 @@ export default  function messageReducer(state= defaultState, action){
 
 export const findNameMessageSlected = (id) => ({type: FIND_NAME_SELECTED, payload: id})
 export const setChats = (us) => ({type: SET_CHATS, payload: us})
+export const setNowChats = (us, isSecond) => ({type: SET_NOW_CHAT, payload: us, bool: isSecond})
+export const setMessageLoading = (us) => ({type: SET_LOADING, payload: us})

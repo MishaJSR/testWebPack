@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
-import {setChats} from "../reducers/messageReducer";
+import {setChats, setMessageLoading, setNowChats} from "../reducers/messageReducer";
 
 export const staticURL = "http://localhost:5000/"
 
@@ -84,26 +84,32 @@ export const setAllUsers = (id) => {
             .catch(err => {
                 console.log("error")
             })
-        await axios.get(`http://localhost:5000/chats/${id}`)
-            .then(response => {
-                dispatch(setChats(response.data))
-            })
-            .catch(err => {
-                console.log("error")
-            })
-
     }
 }
 
 export const getChats = (id) => {
     return async (dispatch) => {
-        await axios.get(`http://localhost:5000/chats/${id}`)
+        await axios.get(`http://localhost:5000/chats/user/${id}`)
             .then(response => {
-                dispatch(setChats(response.data))
+                dispatch(setChats(response.data));
             })
             .catch(err => {
                 console.log("error")
             })
+    }
+}
+
+export const getChatsById = (idChat, activeID) => {
+    return async (dispatch) => {
+        await axios.get(`http://localhost:5000/chats/${idChat}`)
+            .then(response => {
+                if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
+                else dispatch(setNowChats(response.data, false))
+            })
+            .catch(err => {
+                console.log("error")
+            })
+            .finally(dispatch(setMessageLoading(false)))
     }
 }
 
