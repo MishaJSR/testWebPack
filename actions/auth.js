@@ -1,7 +1,8 @@
 import axios from "axios";
 import React from "react";
 import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
-import {setChats, setMessageLoading, setNowChats} from "../reducers/messageReducer";
+import {pushMessage, setChats, setMessageLoading, setNowChats} from "../reducers/messageReducer";
+import {isEqual} from "lodash";
 
 export const staticURL = "http://localhost:5000/"
 
@@ -99,11 +100,14 @@ export const getChats = (id) => {
     }
 }
 
-export const getChatsById = (idChat, activeID) => {
+export const getChatsById = (idChat, activeID, nowChat) => {
     return async (dispatch) => {
         dispatch(setMessageLoading(true))
         await axios.get(`http://localhost:5000/chats/${idChat}`)
             .then(response => {
+                if (_.isEqual(response.data, nowChat)) {
+                    dispatch(setMessageLoading(false))
+                } else
                 if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
                 else dispatch(setNowChats(response.data, false))
                 dispatch(setMessageLoading(false));
@@ -119,3 +123,23 @@ export const getImage = (str) => {
     return newStr
 }
 
+export const pushMess = (listID, idAdder, text ) => {
+    return async (dispatch) => {
+        await axios.post("http://localhost:5000/messages", {id_List: listID, id_Adder: idAdder, text: text})
+            .then(response => {
+                dispatch(pushMessage(99999, listID, idAdder, text))
+            })
+            .catch(err => {
+                dispatch(setAuthError(err.response.data.message))
+            })
+        // await axios.get(`http://localhost:5000/chats/${idChat}`)
+        //     .then(response => {
+        //         if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
+        //         else dispatch(setNowChats(response.data, false))
+        //         dispatch(setMessageLoading(false));
+        //     })
+        //     .catch(err => {
+        //         console.log("error")
+        //     })
+    }
+}

@@ -3,7 +3,7 @@ import classes from './Messager.less'
 import {NavLink, useParams} from "react-router-dom";
 import {setFullScreen, setSearch, setSliderActive} from "../../reducers/profileReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {getChats, getChatsById, getImage, getRepos} from "../../actions/auth";
+import {getChats, getChatsById, getImage, getRepos, pushMess} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 import backbutton from "../../icons/back-button.png";
 import message_send_icon from  '../../icons/send.png'
@@ -13,6 +13,7 @@ import MessageList from "./MessageList/MessageList";
 import {setMessageLoading} from "../../reducers/messageReducer";
 
 
+
 const Messager = () => {
     const dispatch = useDispatch()
     const nameSelected = useSelector(state => state.message.nameSelected);
@@ -20,20 +21,25 @@ const Messager = () => {
     const nowChat = useSelector(state => state.message.nowChat)
     const messageLoading = useSelector(state => state.message.messageLoading)
     const isSecond = useSelector(state => state.message.isSecond)
-    const h2ref = useRef(null);
+    const scrollRef = useRef(null);
+    const textMessRef = useRef(null);
     const { idChat } = useParams();
+    const [count, setCount] = useState(0);
 
     useLayoutEffect(() => {
-        h2ref.current.scrollIntoView({block: "end", inline: "nearest"});
+        scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
     }, []);
 
     useEffect(() => {
-            dispatch(getChatsById(idChat, activeUser));
-    }, [])
+        dispatch(getChatsById(idChat, activeUser, nowChat));
+            setTimeout(() => {
+                setCount(count + 1);
+            }, 4000);
+    }, [count])
 
     return ((!messageLoading && nowChat)?
         <>
-            <div ref={h2ref} className="messageListWrapper">
+            <div ref={scrollRef} className="messageListWrapper">
                 <div className="message_top_name">
                     {nameSelected}
                     <NavLink to={"/messages"}>
@@ -48,14 +54,17 @@ const Messager = () => {
                 </div>
             </div>
             <div className="fixed_test_edit">
-                <textarea type="text" className="text_edit"/>
-                <a href="" className="send_button">
+                <textarea ref={textMessRef} type="text" className="text_edit"/>
+                <button onClick={() => {
+                    dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
+                    // dispatch(getChatsById(idChat, activeUser));
+                }} href="" className="send_button">
                     <img src={message_send_icon} alt=""/>
-                </a>
+                </button>
             </div>
         </>
             :
-            <div ref={h2ref}>
+            <div ref={scrollRef}>
             <PreloaderLogin img={loaderImg}/>
             </div>
     )
