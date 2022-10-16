@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes, Navigate} from "react-router-dom";
 import FindFr from "../components/FindFr/FindFr";
-import Messager from "../components/Messager/Messager";
+import Chats from "../components/Chats/Chats";
 import Profile from "../components/Profile/Profile";
 import StartPage from "../components/StartPage/StartPage";
 import Login from "../components/Login/Login";
 import Registration from "../components/Registration/Registration";
-import MessageField from "../components/MessageField/MessageField";
+import Messager from "../components/MessageField/Messager";
 
 const AppRoute = ({isAuth}) => {
 
@@ -15,8 +15,8 @@ const AppRoute = ({isAuth}) => {
                 <Route path="/" element={<StartPage />} />
                 <Route path="/profile/:idUser" element={<Profile />} />
                 <Route path="/search" element={<FindFr />} />
-                <Route path="/messages" element={<Messager />} />
-                <Route path="/messages/:idChat" element={<MessageField />} />
+                <Route path="/messages" element={<Chats />} />
+                <Route path="/messages/:idChat" element={<Messager />} />
                 <Route path="*" element={<StartPage/>}/>
             </Routes>
     ) :

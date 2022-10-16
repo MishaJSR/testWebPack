@@ -101,15 +101,16 @@ export const getChats = (id) => {
 
 export const getChatsById = (idChat, activeID) => {
     return async (dispatch) => {
+        dispatch(setMessageLoading(true))
         await axios.get(`http://localhost:5000/chats/${idChat}`)
             .then(response => {
                 if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
                 else dispatch(setNowChats(response.data, false))
+                dispatch(setMessageLoading(false));
             })
             .catch(err => {
                 console.log("error")
             })
-            .finally(dispatch(setMessageLoading(false)))
     }
 }
 

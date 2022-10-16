@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import classes from './Messager.less'
+import classes from './Chats.less'
 import {useDispatch, useSelector} from "react-redux";
 import searchicon from  '../../icons/search.png'
 import backbutton from  '../../icons/back-button.png'
@@ -7,9 +7,9 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {getChats} from "../../actions/auth";
 import loaderImg from "../../icons/loading_app.png";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
-import ChatList from "../ChatList/ChatList";
+import ChatList from "./ChatList/ChatList";
 
-const Messager = (props) => {
+const Chats = (props) => {
     const dispatch = useDispatch();
     const activeUser = useSelector(state => state.auth.activeUserId)
     const chats = useSelector(state => state.message.chats)
@@ -40,4 +40,4 @@ const Messager = (props) => {
     )
 }
 
-export default Messager
+export default Chats

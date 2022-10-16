@@ -10,6 +10,8 @@ import nochildren from  '../../icons/nochildren.png'
 import FullScreen from "../FullScreen/FullScreen";
 import {setFullScreen, setSliderPosition} from "../../reducers/profileReducer";
 import {getImage, staticURL} from "../../actions/auth";
+import PreloaderLogin from "../Preloaders/PreloaderLogin";
+import loaderImg from "../../icons/loading_app.png";
 
 
 const Profile = () => {
@@ -33,7 +35,7 @@ const Profile = () => {
         </a>);
 
 
-    return (
+    return (myUser?
             <div>
                 {fullScreen && <FullScreen photo={photo3}/>}
                 <div className="top_userInfo">
@@ -79,6 +81,9 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            :
+                <PreloaderLogin img={loaderImg}/>
+
     )
 }
 

@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import classes from './ChatList.less'
 import {useDispatch, useSelector} from "react-redux";
-import {setFullScreen, setSliderActive} from "../../reducers/profileReducer";
-import crest2 from '../../icons/crest2.png'
-import {getImage} from "../../actions/auth";
+import {setFullScreen, setSliderActive} from "../../../reducers/profileReducer";
+import crest2 from '../../../icons/crest2.png'
+import {getImage} from "../../../actions/auth";
 
 const ChatList = ({e, id, navigate, index}) => {
 

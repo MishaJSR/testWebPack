@@ -1,5 +1,5 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
-import classes from './MessageField.less'
+import classes from './Messager.less'
 import {NavLink, useParams} from "react-router-dom";
 import {setFullScreen, setSearch, setSliderActive} from "../../reducers/profileReducer";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,11 +9,11 @@ import backbutton from "../../icons/back-button.png";
 import message_send_icon from  '../../icons/send.png'
 import loaderImg from "../../icons/loading_app.png";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
-import MessageList from "../MessageList/MessageList";
+import MessageList from "./MessageList/MessageList";
 import {setMessageLoading} from "../../reducers/messageReducer";
 
 
-const MessageField = () => {
+const Messager = () => {
     const dispatch = useDispatch()
     const nameSelected = useSelector(state => state.message.nameSelected);
     const activeUser = useSelector(state => state.auth.activeUserId)
@@ -28,7 +28,6 @@ const MessageField = () => {
     }, []);
 
     useEffect(() => {
-            dispatch(setMessageLoading(true))
             dispatch(getChatsById(idChat, activeUser));
     }, [])
 
@@ -62,5 +61,5 @@ const MessageField = () => {
     )
 }
 
-export default MessageField
+export default Messager
 
