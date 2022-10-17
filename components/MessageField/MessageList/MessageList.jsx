@@ -8,7 +8,7 @@ import {getImage} from "../../../actions/auth";
 const MessageList = ({e, id, index}) => {
 
     return (
-            <span key={index} className={(e.id_Adder === id)? 'mess_textBlock_reverse message_size' : 'mess_textBlock message_size'}>
+            <span key={index} className={(e.id_Adder === id)? 'mess_textBlock_reverse message_size' : 'mess_textBlock message_size hisMessage'}>
             {e.text}
         </span>
     )

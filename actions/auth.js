@@ -1,7 +1,13 @@
 import axios from "axios";
 import React from "react";
 import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
-import {pushMessage, setChats, setMessageLoading, setNowChats} from "../reducers/messageReducer";
+import {
+    pushMessage,
+    setChats,
+    setFirstLoadingID,
+    setMessageLoading,
+    setNowChats
+} from "../reducers/messageReducer";
 import {isEqual} from "lodash";
 
 export const staticURL = "http://localhost:5000/"
@@ -102,15 +108,14 @@ export const getChats = (id) => {
 
 export const getChatsById = (idChat, activeID, nowChat) => {
     return async (dispatch) => {
-        dispatch(setMessageLoading(true))
         await axios.get(`http://localhost:5000/chats/${idChat}`)
             .then(response => {
                 if (_.isEqual(response.data, nowChat)) {
-                    dispatch(setMessageLoading(false))
                 } else
                 if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
                 else dispatch(setNowChats(response.data, false))
                 dispatch(setMessageLoading(false));
+                dispatch(setFirstLoadingID(idChat));
             })
             .catch(err => {
                 console.log("error")

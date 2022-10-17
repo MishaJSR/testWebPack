@@ -20,6 +20,7 @@ const Messager = () => {
     const activeUser = useSelector(state => state.auth.activeUserId)
     const nowChat = useSelector(state => state.message.nowChat)
     const messageLoading = useSelector(state => state.message.messageLoading)
+    const lastID = useSelector(state => state.message.firstLoadingID)
     const isSecond = useSelector(state => state.message.isSecond)
     const scrollRef = useRef(null);
     const textMessRef = useRef(null);
@@ -31,7 +32,9 @@ const Messager = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getChatsById(idChat, activeUser, nowChat));
+        if (lastID == idChat) dispatch(setMessageLoading(false));
+        else dispatch(setMessageLoading(true));
+        dispatch(getChatsById(idChat, activeUser, nowChat, idChat, lastID));
             setTimeout(() => {
                 setCount(count + 1);
             }, 4000);
@@ -47,6 +50,9 @@ const Messager = () => {
                     </NavLink>
                     <NavLink to={"/messages"}>
                         <img className="ava_messager" src={isSecond? getImage(nowChat[0].twoID.ava): getImage(nowChat[0].oneID.ava)} alt=""/>
+                    </NavLink>
+                    <NavLink to={"/messages"}>
+                        <img className="nameMessager" src={isSecond? getImage(nowChat[0].twoID.ava): getImage(nowChat[0].oneID.ava)} alt=""/>
                     </NavLink>
                 </div>
                 <div className="message_text_container">
@@ -64,9 +70,10 @@ const Messager = () => {
             </div>
         </>
             :
-            <div ref={scrollRef}>
+            <>
             <PreloaderLogin img={loaderImg}/>
-            </div>
+                <div ref={scrollRef}></div>
+            </>
     )
 }
 
