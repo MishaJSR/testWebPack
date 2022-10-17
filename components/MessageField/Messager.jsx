@@ -42,7 +42,7 @@ const Messager = () => {
 
     return ((!messageLoading && nowChat)?
         <>
-            <div ref={scrollRef} className="messageListWrapper">
+            <div  className="messageListWrapper">
                 <div className="message_top_name">
                     {nameSelected}
                     <NavLink to={"/messages"}>
@@ -52,10 +52,10 @@ const Messager = () => {
                         <img className="ava_messager" src={isSecond? getImage(nowChat[0].twoID.ava): getImage(nowChat[0].oneID.ava)} alt=""/>
                     </NavLink>
                     <NavLink to={"/messages"}>
-                        <img className="nameMessager" src={isSecond? getImage(nowChat[0].twoID.ava): getImage(nowChat[0].oneID.ava)} alt=""/>
+                        <span className="nameMessager">{isSecond? nowChat[0].twoID.name : nowChat[0].oneID.name}</span>
                     </NavLink>
                 </div>
-                <div className="message_text_container">
+                <div ref={scrollRef} className="message_text_container">
                     {nowChat[0].messages.map((e, index) => <MessageList e={e} id={activeUser} index={index}/>)}
                 </div>
             </div>
@@ -63,7 +63,9 @@ const Messager = () => {
                 <textarea ref={textMessRef} type="text" className="text_edit"/>
                 <button onClick={() => {
                     dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
-                    // dispatch(getChatsById(idChat, activeUser));
+                    dispatch(getChatsById(idChat, activeUser));
+                    textMessRef.current.value = "";
+                    scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
                 }} href="" className="send_button">
                     <img src={message_send_icon} alt=""/>
                 </button>
