@@ -4,7 +4,7 @@ import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reduc
 import {
     pushMessage,
     setChats,
-    setFirstLoadingID,
+    setFirstLoadingID, setIsRender,
     setMessageLoading,
     setNowChats
 } from "../reducers/messageReducer";

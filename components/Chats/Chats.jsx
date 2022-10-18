@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useLayoutEffect, useRef} from "react";
 import classes from './Chats.less'
 import {useDispatch, useSelector} from "react-redux";
 import searchicon from  '../../icons/search.png'
@@ -14,6 +14,10 @@ const Chats = (props) => {
     const activeUser = useSelector(state => state.auth.activeUserId)
     const chats = useSelector(state => state.message.chats)
     const navigate = useNavigate();
+
+    useLayoutEffect(() => {
+        window.scrollTo(0,0)
+    }, []);
 
     useEffect(() => {
         if (!chats) dispatch(getChats(activeUser))

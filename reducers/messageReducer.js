@@ -1,9 +1,9 @@
-
 const SET_CHATS = 'SET_CHATS'
 const SET_NOW_CHAT = 'SET_NOW_CHAT'
 const SET_LOADING = 'SET_LOADING'
 const PUSH_MESSAGE = 'PUSH_MESSAGE'
 const SET_FIRST_LOADING = 'SET_FIRST_LOADING'
+
 
 const defaultState = {
     isFetching: false,
@@ -15,7 +15,7 @@ const defaultState = {
     nowChat: null,
     isSecond: null,
     messageLoading: true,
-    firstLoadingID: null
+    firstLoadingID: null,
 }
 
 
@@ -50,6 +50,7 @@ export default  function messageReducer(state= defaultState, action){
                 ...state,
                nowChat: full
             }
+
 
 
         default:

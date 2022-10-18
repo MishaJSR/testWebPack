@@ -23,18 +23,20 @@ const Messager = () => {
     const lastID = useSelector(state => state.message.firstLoadingID)
     const isSecond = useSelector(state => state.message.isSecond)
     const scrollRef = useRef(null);
+    const scrollRefBack = useRef(null);
     const textMessRef = useRef(null);
     const { idChat } = useParams();
     const [count, setCount] = useState(0);
 
     useLayoutEffect(() => {
         scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
-    }, []);
+    }, [nowChat]);
+
 
     useEffect(() => {
         if (lastID == idChat) dispatch(setMessageLoading(false));
         else dispatch(setMessageLoading(true));
-        dispatch(getChatsById(idChat, activeUser, nowChat, idChat, lastID));
+        dispatch(getChatsById(idChat, activeUser, nowChat, idChat, lastID, ));
             setTimeout(() => {
                 setCount(count + 1);
             }, 4000);
@@ -42,7 +44,7 @@ const Messager = () => {
 
     return ((!messageLoading && nowChat)?
         <>
-            <div  className="messageListWrapper">
+            <div ref={scrollRefBack} className="messageListWrapper">
                 <div className="message_top_name">
                     {nameSelected}
                     <NavLink to={"/messages"}>
@@ -58,17 +60,16 @@ const Messager = () => {
                 <div ref={scrollRef} className="message_text_container">
                     {nowChat[0].messages.map((e, index) => <MessageList e={e} id={activeUser} index={index}/>)}
                 </div>
-            </div>
-            <div className="fixed_test_edit">
-                <textarea ref={textMessRef} type="text" className="text_edit"/>
-                <button onClick={() => {
-                    dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
-                    dispatch(getChatsById(idChat, activeUser));
-                    textMessRef.current.value = "";
-                    scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
-                }} href="" className="send_button">
-                    <img src={message_send_icon} alt=""/>
-                </button>
+                <div className="fixed_test_edit">
+                    <textarea ref={textMessRef} type="text" className="text_edit"/>
+                    <button onClick={() => {
+                        dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
+                        dispatch(getChatsById(idChat, activeUser));
+                        textMessRef.current.value = "";
+                    }} href="" className="send_button">
+                        <img src={message_send_icon} alt=""/>
+                    </button>
+                </div>
             </div>
         </>
             :
