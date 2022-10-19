@@ -57,7 +57,10 @@ const Messager = () => {
                         <span className="nameMessager">{isSecond? nowChat[0].twoID.name : nowChat[0].oneID.name}</span>
                     </NavLink>
                 </div>
-                <div ref={scrollRef} className="message_text_container">
+                <div style={
+                    (nowChat[0].fontsMessage === [])? {}
+                        : {backgroundImage: `url(${"http://localhost:5000/" + nowChat[0].fontsMessage[0].photo_font})`}}
+                     ref={scrollRef} className="message_text_container">
                     {nowChat[0].messages.map((e, index) => <MessageList e={e} id={activeUser} index={index}/>)}
                 </div>
                 <div className="fixed_test_edit">
