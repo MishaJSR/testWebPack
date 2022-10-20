@@ -7,7 +7,7 @@ import {
     setChats,
     setFirstLoadingID, setIsRender, setLoadingChat,
     setMessageLoading,
-    setNowChats
+    setNowChats, setScrollBot
 } from "../reducers/messageReducer";
 
 
@@ -136,6 +136,7 @@ export const getChatsById = (idChat, activeID) => {
                 })
                 .finally(() => {
                     dispatch(setMessageLoading(false));
+
                 })
         }
 }
@@ -148,6 +149,7 @@ export const checkNewMessage = (idChat, nowChat, activeID) => {
                     } else {
                         if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
                         else dispatch(setNowChats(response.data, false));
+
                     }
                 })
                 .catch(err => {

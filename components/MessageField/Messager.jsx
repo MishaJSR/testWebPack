@@ -27,19 +27,17 @@ const Messager = () => {
     const textMessRef = useRef(null);
     const { idChat } = useParams();
     const [count, setCount] = useState(0);
+    const [scrollCount, setScrollCount] = useState(0);
 
 
     const executeScroll = () => scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
 
-    // useLayoutEffect(() => {
-    //     scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
-    // }, [nowChat]);
 
 
     useEffect(() => {
-        executeScroll()
         if (lastID == idChat) {
             dispatch(checkNewMessage(idChat, nowChat, activeUser));
+
         }
         else {
             dispatch(setMessageLoading(true));
@@ -48,7 +46,16 @@ const Messager = () => {
             setTimeout(() => {
                 setCount(count + 1);
             }, 4000);
+
     }, [count])
+
+    useLayoutEffect(() => {
+        executeScroll();
+        setTimeout(() => {
+            setScrollCount(count + 1);
+        }, 100);
+        console.log("ssd")
+    }, [nowChat, messageLoading])
 
     return ((!messageLoading && nowChat)?
         <>

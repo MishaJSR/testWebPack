@@ -18,7 +18,7 @@ const defaultState = {
     isSecond: null,
     messageLoading: true,
     firstLoadingID: null,
-   chatLoading: true,
+    chatLoading: true,
 }
 
 
@@ -45,6 +45,7 @@ export default  function messageReducer(state= defaultState, action){
                 ...state,
                 firstLoadingID: action.payload
             }
+
 
         case PUSH_MESSAGE:
             const full = [...state.nowChat]
