@@ -10,7 +10,8 @@ import message_send_icon from  '../../icons/send.png'
 import loaderImg from "../../icons/loading_app.png";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 import MessageList from "./MessageList/MessageList";
-import {setMessageLoading} from "../../reducers/messageReducer";
+import {pushLastMessChats, setMessageLoading} from "../../reducers/messageReducer";
+import nullUser from "../../icons/user.png";
 
 
 
@@ -51,7 +52,9 @@ const Messager = () => {
                         <img className="icon_back_messager"  src={backbutton} alt=""/>
                     </NavLink>
                     <NavLink to={"/messages"}>
-                        <img className="ava_messager" src={isSecond? getImage(nowChat[0].twoID.ava): getImage(nowChat[0].oneID.ava)} alt=""/>
+                        <img className="ava_messager" src={(isSecond)?
+                          (!nowChat[0].twoID.ava)? nullUser : getImage(nowChat[0].twoID.ava) :
+                            (!nowChat[0].oneID.ava)? nullUser : getImage(nowChat[0].oneID.ava)} alt=""/>
                     </NavLink>
                     <NavLink to={"/messages"}>
                         <span className="nameMessager">{isSecond? nowChat[0].twoID.name : nowChat[0].oneID.name}</span>
@@ -67,6 +70,7 @@ const Messager = () => {
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
                     <button onClick={() => {
                         dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
+                        // dispatch(pushLastMessChats(nowChat[0].id, activeUser, textMessRef.current.value))
                         dispatch(getChatsById(idChat, activeUser));
                         textMessRef.current.value = "";
                     }} href="" className="send_button">

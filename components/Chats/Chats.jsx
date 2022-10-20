@@ -1,29 +1,50 @@
-import React, {useEffect, useLayoutEffect, useRef} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import classes from './Chats.less'
 import {useDispatch, useSelector} from "react-redux";
 import searchicon from  '../../icons/search.png'
 import backbutton from  '../../icons/back-button.png'
 import {NavLink, useNavigate} from "react-router-dom";
-import {getChats} from "../../actions/auth";
+import {checkChats, getChats, getChatsById} from "../../actions/auth";
 import loaderImg from "../../icons/loading_app.png";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 import ChatList from "./ChatList/ChatList";
+import {setLoadingChat, setMessageLoading} from "../../reducers/messageReducer";
 
 const Chats = (props) => {
     const dispatch = useDispatch();
     const activeUser = useSelector(state => state.auth.activeUserId)
     const chats = useSelector(state => state.message.chats)
+    const chatLoading = useSelector(state => state.message.chatLoading)
     const navigate = useNavigate();
+    const [count, setCount] = useState(0);
 
     useLayoutEffect(() => {
         window.scrollTo(0,0)
     }, []);
 
     useEffect(() => {
-        if (!chats) dispatch(getChats(activeUser))
-    }, []);
+        if (!chats) {
+            dispatch(setLoadingChat(true))
+            dispatch(getChats(activeUser))
+        } else {
+            dispatch(setLoadingChat(false))
+            dispatch(checkChats(chats, activeUser))
+        }
+            setTimeout(() => {
+                setCount(count + 1);
+            }, 4000);
+    }, [count]);
 
-    return ((chats)?
+    // useEffect(() => {
+    //     if (lastID == idChat) dispatch(setMessageLoading(false));
+    //     else dispatch(setMessageLoading(true));
+    //     dispatch(getChatsById(idChat, activeUser, nowChat, idChat, lastID, ));
+    //     setTimeout(() => {
+    //         setCount(count + 1);
+    //     }, 4000);
+    // }, [count])
+
+    return ((!chatLoading)?
         <div className="mess_area">
             <div className="message_top_nav">
                 Messages

@@ -4,7 +4,7 @@ import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reduc
 import {
     pushMessage,
     setChats,
-    setFirstLoadingID, setIsRender,
+    setFirstLoadingID, setIsRender, setLoadingChat,
     setMessageLoading,
     setNowChats
 } from "../reducers/messageReducer";
@@ -99,6 +99,22 @@ export const getChats = (id) => {
         await axios.get(`http://localhost:5000/chats/user/${id}`)
             .then(response => {
                 dispatch(setChats(response.data));
+                dispatch(setLoadingChat(false))
+            })
+            .catch(err => {
+                console.log("error")
+            })
+    }
+}
+
+export const checkChats = (chat, activeID) => {
+    return async (dispatch) => {
+        await axios.get(`http://localhost:5000/chats/user/${activeID}`)
+            .then(response => {
+                if (_.isEqual(response.data, chat)) {
+                } else
+                dispatch(setChats(response.data));
+                dispatch(setMessageLoading(false));
             })
             .catch(err => {
                 console.log("error")

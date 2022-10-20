@@ -3,6 +3,7 @@ import classes from './ChatList.less'
 import {useDispatch, useSelector} from "react-redux";
 import {setFullScreen, setSliderActive} from "../../../reducers/profileReducer";
 import crest2 from '../../../icons/crest2.png'
+import nullUser from '../../../icons/user.png'
 import {getImage} from "../../../actions/auth";
 
 const ChatList = ({e, id, navigate, index}) => {
@@ -12,7 +13,7 @@ const ChatList = ({e, id, navigate, index}) => {
             navigate(`/messages/${e.id}`)
         }} key={index} className='messBlock'>
             <a className='mess_ava '>
-                <img className="round" src={getImage(e.twoID.ava)}></img>
+                <img className="round" src={(!e.twoID.ava)? nullUser : getImage(e.twoID.ava)}></img>
             </a>
             <div className='mess_userInfo'>
                 <div className='mess_textInfo'>
@@ -20,7 +21,7 @@ const ChatList = ({e, id, navigate, index}) => {
                         {e.twoID.name}
                     </div>
                     <div className='mess_LastMessage'>
-                        {e.twoID.name}
+                        {e.messages[0].text}
                     </div>
                 </div>
             </div>
@@ -30,7 +31,7 @@ const ChatList = ({e, id, navigate, index}) => {
                 navigate(`/messages/${e.id}`)
             }} key={index} className='messBlock'>
                 <a className='mess_ava '>
-                    <img className="round" src={getImage(e.oneID.ava)}></img>
+                    <img className="round" src={(!e.oneID.ava)? nullUser : getImage(e.oneID.ava)}></img>
                 </a>
                 <div className='mess_userInfo'>
                     <div className='mess_textInfo'>
@@ -38,7 +39,7 @@ const ChatList = ({e, id, navigate, index}) => {
                             {e.oneID.name}
                         </div>
                         <div className='mess_LastMessage'>
-                            {e.oneID.name}
+                            {e.messages[0].text}
                         </div>
                     </div>
                 </div>
