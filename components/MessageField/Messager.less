@@ -61,16 +61,37 @@
 
   .message_size{
     display: flex;
+    position: relative;
     align-items: center;
    width: auto;
     vertical-align: middle;
     min-height: 30px;
+    min-width: 60px;
     padding: 0 2vw;
+    padding-bottom: 4vw;
     border: 2px solid black;
     border-radius: 8px;
     background-color: white;
     color: black;
     font-weight: bold;
+    .mess_time_reverse{
+      position: absolute;
+      bottom: 1px;
+      left: 3px;
+      font-size: .6rem;
+    }
+    .mess_time{
+      position: absolute;
+      bottom: 1px;
+      left: 3px;
+      font-size: .6rem;
+    }
+    .month_time_reverse{
+      position: absolute;
+      bottom: 1px;
+      left: 30px;
+      font-size: .6rem;
+    }
   }
   .ava_messager{
 
