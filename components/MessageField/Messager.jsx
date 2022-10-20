@@ -3,7 +3,7 @@ import classes from './Messager.less'
 import {NavLink, useParams} from "react-router-dom";
 import {setFullScreen, setSearch, setSliderActive} from "../../reducers/profileReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {getChats, getChatsById, getImage, getRepos, pushMess} from "../../actions/auth";
+import {checkNewMessage, getChats, getChatsById, getImage, getRepos, pushMess} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 import backbutton from "../../icons/back-button.png";
 import message_send_icon from  '../../icons/send.png'
@@ -24,20 +24,27 @@ const Messager = () => {
     const lastID = useSelector(state => state.message.firstLoadingID)
     const isSecond = useSelector(state => state.message.isSecond)
     const scrollRef = useRef(null);
-    const scrollRefBack = useRef(null);
     const textMessRef = useRef(null);
     const { idChat } = useParams();
     const [count, setCount] = useState(0);
 
-    useLayoutEffect(() => {
-        scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
-    }, [nowChat]);
+
+    const executeScroll = () => scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
+
+    // useLayoutEffect(() => {
+    //     scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
+    // }, [nowChat]);
 
 
     useEffect(() => {
-        if (lastID == idChat) dispatch(setMessageLoading(false));
-        else dispatch(setMessageLoading(true));
-        dispatch(getChatsById(idChat, activeUser, nowChat, idChat, lastID, ));
+        executeScroll()
+        if (lastID == idChat) {
+            dispatch(checkNewMessage(idChat, nowChat, activeUser));
+        }
+        else {
+            dispatch(setMessageLoading(true));
+            dispatch(getChatsById(idChat, activeUser));
+        }
             setTimeout(() => {
                 setCount(count + 1);
             }, 4000);
@@ -45,7 +52,7 @@ const Messager = () => {
 
     return ((!messageLoading && nowChat)?
         <>
-            <div ref={scrollRefBack} className="messageListWrapper">
+            <div className="messageListWrapper">
                 <div className="message_top_name">
                     {nameSelected}
                     <NavLink to={"/messages"}>
@@ -60,10 +67,12 @@ const Messager = () => {
                         <span className="nameMessager">{isSecond? nowChat[0].twoID.name : nowChat[0].oneID.name}</span>
                     </NavLink>
                 </div>
-                <div style={
+                <div
+                    ref={scrollRef}
+                    style={
                     (nowChat[0].fontsMessage === [])? {}
                         : {backgroundImage: `url(${"http://localhost:5000/" + nowChat[0].fontsMessage[0].photo_font})`}}
-                     ref={scrollRef} className="message_text_container">
+                     className="message_text_container">
                     {nowChat[0].messages.map((e, index) => <MessageList e={e} id={activeUser} index={index}/>)}
                 </div>
                 <div className="fixed_test_edit">

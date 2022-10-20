@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import {isEqual} from "lodash";
 import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
 import {
     pushMessage,
@@ -8,7 +9,7 @@ import {
     setMessageLoading,
     setNowChats
 } from "../reducers/messageReducer";
-import {isEqual} from "lodash";
+
 
 export const staticURL = "http://localhost:5000/"
 
@@ -114,7 +115,7 @@ export const checkChats = (chat, activeID) => {
                 if (_.isEqual(response.data, chat)) {
                 } else
                 dispatch(setChats(response.data));
-                dispatch(setMessageLoading(false));
+                dispatch(setLoadingChat(false))
             })
             .catch(err => {
                 console.log("error")
@@ -122,20 +123,36 @@ export const checkChats = (chat, activeID) => {
     }
 }
 
-export const getChatsById = (idChat, activeID, nowChat) => {
+export const getChatsById = (idChat, activeID) => {
     return async (dispatch) => {
-        await axios.get(`http://localhost:5000/chats/${idChat}`)
-            .then(response => {
-                if (_.isEqual(response.data, nowChat)) {
-                } else
-                if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
-                else dispatch(setNowChats(response.data, false))
-                dispatch(setMessageLoading(false));
-                dispatch(setFirstLoadingID(idChat));
-            })
-            .catch(err => {
-                console.log("error")
-            })
+            await axios.get(`http://localhost:5000/chats/${idChat}`)
+                .then(response => {
+                        if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
+                        else dispatch(setNowChats(response.data, false));
+                        dispatch(setFirstLoadingID(idChat));
+                })
+                .catch(err => {
+                    console.log("error")
+                })
+                .finally(() => {
+                    dispatch(setMessageLoading(false));
+                })
+        }
+}
+
+export const checkNewMessage = (idChat, nowChat, activeID) => {
+    return async (dispatch) => {
+            await axios.get(`http://localhost:5000/chats/${idChat}`)
+                .then(response => {
+                    if (_.isEqual(response.data, nowChat)) {
+                    } else {
+                        if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
+                        else dispatch(setNowChats(response.data, false));
+                    }
+                })
+                .catch(err => {
+                    console.log("error")
+                })
     }
 }
 
@@ -153,14 +170,5 @@ export const pushMess = (listID, idAdder, text ) => {
             .catch(err => {
                 dispatch(setAuthError(err.response.data.message))
             })
-        // await axios.get(`http://localhost:5000/chats/${idChat}`)
-        //     .then(response => {
-        //         if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
-        //         else dispatch(setNowChats(response.data, false))
-        //         dispatch(setMessageLoading(false));
-        //     })
-        //     .catch(err => {
-        //         console.log("error")
-        //     })
     }
 }
