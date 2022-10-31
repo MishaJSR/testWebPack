@@ -25,6 +25,7 @@ import nullUser from "../../icons/user.png";
 
 const Messager = () => {
     const dispatch = useDispatch()
+    const dateMessage = useSelector(state => state.message.dateMessage);
     const nameSelected = useSelector(state => state.message.nameSelected);
     const activeUser = useSelector(state => state.auth.activeUserId)
     const nowChat = useSelector(state => state.message.nowChat)
@@ -91,13 +92,22 @@ const Messager = () => {
                     (nowChat[0].fontsMessage === [])? {}
                         : {backgroundImage: `url(${"http://localhost:5000/" + nowChat[0].fontsMessage[0].photo_font})`}}
                      className="message_text_container">
-                    {nowChat[0].messages.map((e, index) => <MessageList utc={utc} e={e} id={activeUser} index={index}/>)}
+                    {nowChat[0].messages.map((e, index) => {
+                        let flag;
+                        if (localStorage.getItem('dateMess') !== e.createdAt.slice(4,10)) {
+                            localStorage.setItem('dateMess', e.createdAt.slice(4,10));
+                            flag = true;
+                            console.log(flag)
+                        } else flag = false;
+                           return <MessageList isDate={flag} utc={utc} e={e} id={activeUser} index={index}/>
+                    }
+                        )}
                 </div>
                 <div className="fixed_test_edit">
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
                     <button onClick={() => {
                         dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
-                        dispatch(setMessageLoading(true));
+                        // dispatch(setMessageLoading(true));
                         textMessRef.current.value = "";
                     }} href="" className="send_button">
                         <img src={message_send_icon} alt=""/>

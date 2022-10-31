@@ -5,6 +5,8 @@ const PUSH_MESSAGE = 'PUSH_MESSAGE'
 const SET_FIRST_LOADING = 'SET_FIRST_LOADING'
 const SET_LOADING_CHAT = 'SET_LOADING_CHAT'
 const SET_UTC = 'SET_UTC'
+const SET_DATE_MESSAGE = 'SET_DATE_MESSAGE'
+const IS_DISPLAY_DATA = 'IS_DISPLAY_DATA'
 
 const defaultState = {
     isFetching: false,
@@ -18,7 +20,9 @@ const defaultState = {
     messageLoading: true,
     firstLoadingID: null,
     chatLoading: true,
-    utc: false
+    utc: false,
+    dateMessage: null,
+    isDisplayData: false
 }
 
 
@@ -67,6 +71,16 @@ export default  function messageReducer(state= defaultState, action){
                 ...state,
                 utc: action.payload
             }
+        case SET_DATE_MESSAGE:
+            return {
+                ...state,
+                dateMessage: action.payload
+            }
+        case IS_DISPLAY_DATA:
+            return {
+                ...state,
+                isDisplayData: action.payload
+            }
 
 
 
@@ -82,3 +96,5 @@ export const pushMessage = (id, id_List, id_Adder, text) => ({type: PUSH_MESSAGE
 export const setFirstLoadingID = (us) => ({type: SET_FIRST_LOADING, payload: us})
 export const setLoadingChat = (us) => ({type: SET_LOADING_CHAT, payload: us})
 export const setUTC = (us) => ({type: SET_UTC, payload: us})
+export const setDateMessage = (us) => ({type: SET_DATE_MESSAGE, payload: us})
+export const isDisplayData = (us) => ({type: IS_DISPLAY_DATA, payload: us})

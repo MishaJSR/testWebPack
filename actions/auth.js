@@ -27,6 +27,7 @@ export const logIn = (email, password, navigate) => {
             .then(response => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('id', response.data.id);
+                localStorage.setItem('dateMess', "")
                 dispatch(setMyId(response.data.id))
                 dispatch(setA(true));
                 dispatch(setAuthError(false))
