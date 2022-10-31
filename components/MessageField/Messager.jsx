@@ -10,6 +10,7 @@ import {
     getImage,
     getMiliSeconds,
     getRepos,
+    pushMess
 } from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 import backbutton from "../../icons/back-button.png";
@@ -95,6 +96,7 @@ const Messager = () => {
                 <div className="fixed_test_edit">
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
                     <button onClick={() => {
+                        dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
                         dispatch(setMessageLoading(true));
                         textMessRef.current.value = "";
                     }} href="" className="send_button">

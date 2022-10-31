@@ -163,6 +163,17 @@ export const getImage = (str) => {
     return newStr
 }
 
+export const pushMess = (listID, idAdder, text ) => {
+    return async (dispatch) => {
+        await axios.post("http://localhost:5000/messages", {id_List: listID, id_Adder: idAdder, text: text})
+            .then(response => {
+                dispatch(pushMessage(99999, listID, idAdder, text))
+            })
+            .catch(err => {
+                dispatch(setAuthError(err.response.data.message))
+            })
+    }
+}
 
 export const getMiliSeconds = () => {
     return (dispatch) => {
