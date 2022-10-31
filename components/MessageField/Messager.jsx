@@ -44,11 +44,8 @@ const Messager = () => {
 
 
     useEffect(() => {
-        if (!utc) dispatch(getMiliSeconds());
-
         if (lastID == idChat) {
             dispatch(checkNewMessage(idChat, nowChat, activeUser));
-
         }
         else {
             dispatch(setMessageLoading(true));
@@ -86,21 +83,21 @@ const Messager = () => {
 
                     </NavLink>
                 </div>
-                <div
-                    ref={scrollRef}
-                    style={
-                    (nowChat[0].fontsMessage === [])? {}
-                        : {backgroundImage: `url(${"http://localhost:5000/" + nowChat[0].fontsMessage[0].photo_font})`}}
-                     className="message_text_container">
+                <div ref={scrollRef} className="message_text_container">
                     {nowChat[0].messages.map((e, index) => {
-                        let flag;
-                        if (localStorage.getItem('dateMess') !== e.createdAt.slice(4,10)) {
-                            localStorage.setItem('dateMess', e.createdAt.slice(4,10));
-                            flag = true;
-                            console.log(flag)
-                        } else flag = false;
-                           return <MessageList isDate={flag} utc={utc} e={e} id={activeUser} index={index}/>
-                    }
+                            try {
+                                let flag;
+                                console.log(e.createdAt)
+                                if (localStorage.getItem('dateMess') !== e.createdAt.slice(4,10)) {
+                                    localStorage.setItem('dateMess', e.createdAt.slice(4,10));
+                                    flag = true;
+                                    console.log(flag)
+                                } else flag = false;
+                                return <MessageList isDate={flag} utc={utc} e={e} id={activeUser} index={index}/>
+                            } catch (err) {
+                                return <MessageList isDate={false} utc={utc} e={e} id={activeUser} index={index}/>
+                            }
+                        }
                         )}
                 </div>
                 <div className="fixed_test_edit">

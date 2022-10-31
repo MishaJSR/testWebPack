@@ -30,6 +30,7 @@ export const logIn = (email, password, navigate) => {
                 localStorage.setItem('dateMess', "")
                 dispatch(setMyId(response.data.id))
                 dispatch(setA(true));
+                dispatch(getMiliSeconds());
                 dispatch(setAuthError(false))
                 navigate(`/profile/${response.data.id}`)
             })
@@ -49,8 +50,11 @@ export const reg = (email, password, gender, name, navigate) => {
         await axios.post("http://localhost:5000/auth/registration", {email: email, password: password, gender: gender, name: name})
             .then(response => {
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('id', response.data.id);
+                localStorage.setItem('dateMess', "")
                 dispatch(setMyId(response.data.id))
                 dispatch(setA(true));
+                dispatch(getMiliSeconds());
                 dispatch(setAuthError(false))
                 navigate(`/profile/${response.data.id}`)
             })
