@@ -7,7 +7,7 @@ import {
     setChats,
     setFirstLoadingID, setIsRender, setLoadingChat,
     setMessageLoading,
-    setNowChats, setScrollBot
+    setNowChats, setScrollBot, setUTC
 } from "../reducers/messageReducer";
 
 
@@ -145,11 +145,11 @@ export const checkNewMessage = (idChat, nowChat, activeID) => {
     return async (dispatch) => {
             await axios.get(`http://localhost:5000/chats/${idChat}`)
                 .then(response => {
-                    if (_.isEqual(response.data, nowChat)) {
-                    } else {
+                    if (_.isEqual(response.data, nowChat)) dispatch(setMessageLoading(false));
+                    else {
                         if (response.data[0].one_id === activeID) dispatch(setNowChats(response.data, true));
                         else dispatch(setNowChats(response.data, false));
-
+                        dispatch(setMessageLoading(false));
                     }
                 })
                 .catch(err => {
@@ -163,14 +163,11 @@ export const getImage = (str) => {
     return newStr
 }
 
-export const pushMess = (listID, idAdder, text ) => {
-    return async (dispatch) => {
-        await axios.post("http://localhost:5000/messages", {id_List: listID, id_Adder: idAdder, text: text})
-            .then(response => {
-                dispatch(pushMessage(99999, listID, idAdder, text))
-            })
-            .catch(err => {
-                dispatch(setAuthError(err.response.data.message))
-            })
+
+export const getMiliSeconds = () => {
+    return (dispatch) => {
+        const ms = new Date().getTimezoneOffset()*600;
+        dispatch(setUTC(ms))
     }
 }
+

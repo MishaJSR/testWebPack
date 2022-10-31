@@ -3,9 +3,8 @@ const SET_NOW_CHAT = 'SET_NOW_CHAT'
 const SET_LOADING = 'SET_LOADING'
 const PUSH_MESSAGE = 'PUSH_MESSAGE'
 const SET_FIRST_LOADING = 'SET_FIRST_LOADING'
-const PUSH_LAST_MESSAGE = 'PUSH_LAST_MESSAGE'
 const SET_LOADING_CHAT = 'SET_LOADING_CHAT'
-
+const SET_UTC = 'SET_UTC'
 
 const defaultState = {
     isFetching: false,
@@ -19,6 +18,7 @@ const defaultState = {
     messageLoading: true,
     firstLoadingID: null,
     chatLoading: true,
+    utc: false
 }
 
 
@@ -55,19 +55,17 @@ export default  function messageReducer(state= defaultState, action){
                nowChat: full
             }
 
-        case PUSH_LAST_MESSAGE:
-            const chat = [...state.chats]
-            const needChat = chat.find(chat => chat.id === action.idChat)
-            needChat.messages.push(action.payload);
-            return {
-                ...state,
-                chats: chat
-            }
 
         case SET_LOADING_CHAT:
             return {
                 ...state,
                 chatLoading: action.payload
+            }
+
+        case SET_UTC:
+            return {
+                ...state,
+                utc: action.payload
             }
 
 
@@ -82,5 +80,5 @@ export const setNowChats = (us, isSecond) => ({type: SET_NOW_CHAT, payload: us, 
 export const setMessageLoading = (us) => ({type: SET_LOADING, payload: us})
 export const pushMessage = (id, id_List, id_Adder, text) => ({type: PUSH_MESSAGE, payload: {id: id, id_List: id_List, id_Adder: id_Adder, text: text}})
 export const setFirstLoadingID = (us) => ({type: SET_FIRST_LOADING, payload: us})
-export const pushLastMessChats = (idChat, adder, text) => ({type: PUSH_LAST_MESSAGE, idChat: id, payload: {id: 999999, id_List: id, id_Adder: adder, text: text}})
 export const setLoadingChat = (us) => ({type: SET_LOADING_CHAT, payload: us})
+export const setUTC = (us) => ({type: SET_UTC, payload: us})

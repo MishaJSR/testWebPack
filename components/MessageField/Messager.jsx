@@ -3,7 +3,14 @@ import classes from './Messager.less'
 import {NavLink, useParams} from "react-router-dom";
 import {setFullScreen, setSearch, setSliderActive} from "../../reducers/profileReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {checkNewMessage, getChats, getChatsById, getImage, getRepos, pushMess} from "../../actions/auth";
+import {
+    checkNewMessage,
+    getChats,
+    getChatsById,
+    getImage,
+    getMiliSeconds,
+    getRepos,
+} from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 import backbutton from "../../icons/back-button.png";
 import message_send_icon from  '../../icons/send.png'
@@ -23,18 +30,20 @@ const Messager = () => {
     const messageLoading = useSelector(state => state.message.messageLoading)
     const lastID = useSelector(state => state.message.firstLoadingID)
     const isSecond = useSelector(state => state.message.isSecond)
+    const utc = useSelector(state => state.message.utc);
     const scrollRef = useRef(null);
     const textMessRef = useRef(null);
     const { idChat } = useParams();
     const [count, setCount] = useState(0);
     const [scrollCount, setScrollCount] = useState(0);
 
-
     const executeScroll = () => scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
 
 
 
     useEffect(() => {
+        if (!utc) dispatch(getMiliSeconds());
+
         if (lastID == idChat) {
             dispatch(checkNewMessage(idChat, nowChat, activeUser));
 
@@ -49,12 +58,12 @@ const Messager = () => {
 
     }, [count])
 
+
     useLayoutEffect(() => {
         executeScroll();
         setTimeout(() => {
             setScrollCount(count + 1);
         }, 100);
-        console.log("ssd")
     }, [nowChat, messageLoading])
 
     return ((!messageLoading && nowChat)?
@@ -72,6 +81,7 @@ const Messager = () => {
                     </NavLink>
                     <NavLink to={"/messages"}>
                         <span className="nameMessager">{isSecond? nowChat[0].twoID.name : nowChat[0].oneID.name}</span>
+
                     </NavLink>
                 </div>
                 <div
@@ -80,14 +90,12 @@ const Messager = () => {
                     (nowChat[0].fontsMessage === [])? {}
                         : {backgroundImage: `url(${"http://localhost:5000/" + nowChat[0].fontsMessage[0].photo_font})`}}
                      className="message_text_container">
-                    {nowChat[0].messages.map((e, index) => <MessageList e={e} id={activeUser} index={index}/>)}
+                    {nowChat[0].messages.map((e, index) => <MessageList utc={utc} e={e} id={activeUser} index={index}/>)}
                 </div>
                 <div className="fixed_test_edit">
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
                     <button onClick={() => {
-                        dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
-                        // dispatch(pushLastMessChats(nowChat[0].id, activeUser, textMessRef.current.value))
-                        dispatch(getChatsById(idChat, activeUser));
+                        dispatch(setMessageLoading(true));
                         textMessRef.current.value = "";
                     }} href="" className="send_button">
                         <img src={message_send_icon} alt=""/>
