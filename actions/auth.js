@@ -141,14 +141,13 @@ export const getChatsById = (idChat, activeID) => {
                 })
                 .finally(() => {
                     dispatch(setMessageLoading(false));
-
                 })
         }
 }
 
 export const getChatsUnread = (idChat, activeID) => {
     return async (dispatch) => {
-        await axios.post(`http://localhost:5000/messages/unread`, {id_List: idChat, id_Adder: activeID})
+        await axios.post(`http://localhost:5000/chats/setRead`, {id_List: idChat, id_Adder: activeID})
             .then(response => {
                 return response.data;
             })

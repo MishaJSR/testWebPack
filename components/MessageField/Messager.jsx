@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     checkNewMessage,
     getChats,
-    getChatsById,
+    getChatsById, getChatsUnread,
     getImage,
     getMiliSeconds,
     getRepos,
@@ -47,6 +47,7 @@ const Messager = () => {
         }
         else {
             dispatch(setMessageLoading(true));
+            dispatch(getChatsUnread(idChat, activeUser));
             dispatch(getChatsById(idChat, activeUser));
         }
             setTimeout(() => {
