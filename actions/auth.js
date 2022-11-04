@@ -29,7 +29,6 @@ export const logIn = (email, password, navigate) => {
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('dateMess', "")
                 dispatch(setMyId(response.data.id))
-                dispatch(setA(true));
                 dispatch(getMiliSeconds());
                 dispatch(setAuthError(false))
                 navigate(`/profile/${response.data.id}`)
@@ -37,8 +36,9 @@ export const logIn = (email, password, navigate) => {
             .catch(err => {
                 dispatch(setAuthError(err.response.data.message))
             })
-            .finally(() =>  dispatch(setAuthFetch(false))
-            )
+            .finally(() => {
+                dispatch(setAuthFetch(false));
+            })
     }
 }
 
@@ -53,7 +53,6 @@ export const reg = (email, password, gender, name, navigate) => {
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('dateMess', "")
                 dispatch(setMyId(response.data.id))
-                dispatch(setA(true));
                 dispatch(getMiliSeconds());
                 dispatch(setAuthError(false))
                 navigate(`/profile/${response.data.id}`)
@@ -61,8 +60,10 @@ export const reg = (email, password, gender, name, navigate) => {
             .catch(err => {
                 dispatch(setAuthError(err.response.data.message))
             })
-            .finally(() =>  dispatch(setAuthFetch(false))
-            )
+            .finally(() => {
+                    dispatch(setAuthFetch(false));
+            })
+
     }
 }
 
@@ -73,6 +74,7 @@ export const checkAuth = () => {
         await axios.get(`http://localhost:5000/auth/check/${tok}`)
             .then(response => {
                 dispatch(setMyId(response.data.id))
+                setAllUsers(response.data.id);
             })
             .catch(err => {
                 dispatch(setA(false));
@@ -91,13 +93,13 @@ export const setAllUsers = (id) => {
             })
         await axios.get(`http://localhost:5000/users/${id}`)
             .then(response => {
-                dispatch(setMe(response.data))
+                dispatch(setMe(response.data));
+                dispatch(setA(true))
             })
             .catch(err => {
                 console.log("error");
             })
-            .finally(() =>  dispatch(setA(true))
-            )
+            .finally(() => dispatch(setAuthLoading(false)))
 
     }
 }

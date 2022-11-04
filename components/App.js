@@ -21,15 +21,11 @@ const App = () => {
     const {pathname} = useLocation();
 
     useEffect(() => {
-        dispatch(setAuthLoading(true));
-        if (localStorage.getItem('id')) {
-            dispatch(checkAuth());
             dispatch(setAllUsers(localStorage.getItem('id')));
-        } else dispatch(setA(false))
+            dispatch(checkAuth());
+    }, [pathname]);
 
-    }, []);
-
-    return (isAuth === null?
+    return (authLoadind?
             <PreloaderLogin img={loaderImg}/>
             :
             <div className="wrapper">

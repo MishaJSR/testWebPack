@@ -3,7 +3,7 @@ import classes from './Navbar.less'
 import './Navbar.less'
 import { NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setA} from "../../reducers/authReducer";
+import {setA, setMe} from "../../reducers/authReducer";
 import logo from  '../../icons/brotherhood.png'
 import message from  '../../icons/send.png'
 import findlove from  '../../icons/findlove.png'
@@ -39,7 +39,7 @@ const Navbar = ({isAuth}) => {
                 </NavLink>
                 <NavLink className="hoverpink rigth_nav_panel col-3 col-lg-4 "  to="/login" onClick={() => {
                     localStorage.clear();
-                    dispatch(setA(false))
+                    dispatch(setA(false));
                 }}>
                     <img className="nullprofile" src={exit} alt=""/>
                 </NavLink>

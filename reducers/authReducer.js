@@ -16,7 +16,7 @@ const defaultState = {
     gendersPool: ['Men', 'Woomen' , 'Gey', 'Lesbi'],
     all: null,
     myUser: null,
-    authLoadind: null
+    authLoadind: true
 }
 
 
