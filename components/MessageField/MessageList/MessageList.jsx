@@ -9,7 +9,7 @@ import {isDisplayData, setDateMessage, setMessageLoading} from "../../../reducer
 const MessageList = ({isDate, utc, e, id, index}) => {
 
     const mcs = Date.parse(e.createdAt)
-    const a = new Date(mcs+utc+120000).toString();
+    const a = new Date(mcs+utc+30000).toString();
 
 
     return (

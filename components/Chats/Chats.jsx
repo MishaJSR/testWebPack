@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import searchicon from  '../../icons/search.png'
 import backbutton from  '../../icons/back-button.png'
 import {NavLink, useNavigate} from "react-router-dom";
-import {checkChats, getChats, getChatsById} from "../../actions/auth";
+import {checkChats, getChats, getChatsById, getChatsUnread} from "../../actions/auth";
 import loaderImg from "../../icons/loading_app.png";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 import ChatList from "./ChatList/ChatList";
@@ -35,14 +35,6 @@ const Chats = (props) => {
             }, 4000);
     }, [count]);
 
-    // useEffect(() => {
-    //     if (lastID == idChat) dispatch(setMessageLoading(false));
-    //     else dispatch(setMessageLoading(true));
-    //     dispatch(getChatsById(idChat, activeUser, nowChat, idChat, lastID, ));
-    //     setTimeout(() => {
-    //         setCount(count + 1);
-    //     }, 4000);
-    // }, [count])
 
     return ((!chatLoading)?
         <div className="mess_area">
@@ -57,7 +49,9 @@ const Chats = (props) => {
                 <img src={searchicon} alt=""/>
             </div>
         <div className='messageInfo'>
-            {chats.map((e, index) => <ChatList e={e} id={activeUser} navigate={navigate} index={index}/>)}
+            {chats.map((e, index) => {
+                return <ChatList e={e} idChat={e.id} id={activeUser} navigate={navigate} index={index}/>
+            } )}
         </div>
         </div>
             :

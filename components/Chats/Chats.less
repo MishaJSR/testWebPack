@@ -78,11 +78,26 @@
 }
 
 .mess_userInfo{
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   padding-top: 7px;
   border-bottom: 1px solid #18002c;
+  .unread{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 20px;
+    top: 35px;
+    color: #4b0186;
+    font-weight: bold;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+  }
 }
 
 .mess_textInfo{

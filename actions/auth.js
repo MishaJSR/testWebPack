@@ -146,6 +146,20 @@ export const getChatsById = (idChat, activeID) => {
         }
 }
 
+export const getChatsUnread = (idChat, activeID) => {
+    return async (dispatch) => {
+        await axios.post(`http://localhost:5000/messages/unread`, {id_List: idChat, id_Adder: activeID})
+            .then(response => {
+                return response.data;
+            })
+            .catch(err => {
+                console.log("error")
+            })
+            .finally(() => {
+            })
+    }
+}
+
 export const checkNewMessage = (idChat, nowChat, activeID) => {
     return async (dispatch) => {
             await axios.get(`http://localhost:5000/chats/${idChat}`)

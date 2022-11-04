@@ -22,7 +22,8 @@ const defaultState = {
     chatLoading: true,
     utc: false,
     dateMessage: null,
-    isDisplayData: false
+    isDisplayData: false,
+
 }
 
 

@@ -41,8 +41,6 @@ const Messager = () => {
 
     const executeScroll = () => scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
 
-
-
     useEffect(() => {
         if (lastID == idChat) {
             dispatch(checkNewMessage(idChat, nowChat, activeUser));
@@ -87,11 +85,9 @@ const Messager = () => {
                     {nowChat[0].messages.map((e, index) => {
                             try {
                                 let flag;
-                                console.log(e.createdAt)
                                 if (localStorage.getItem('dateMess') !== e.createdAt.slice(4,10)) {
                                     localStorage.setItem('dateMess', e.createdAt.slice(4,10));
                                     flag = true;
-                                    console.log(flag)
                                 } else flag = false;
                                 return <MessageList isDate={flag} utc={utc} e={e} id={activeUser} index={index}/>
                             } catch (err) {
