@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {isEqual} from "lodash";
-import {setA, setAll, setAuthError, setAuthFetch, setMe, setMyId} from "../reducers/authReducer";
+import {setA, setAll, setAuthError, setAuthFetch, setAuthLoading, setMe, setMyId} from "../reducers/authReducer";
 import {
     pushMessage,
     setChats,
@@ -72,7 +72,6 @@ export const checkAuth = () => {
         const tok = localStorage.getItem('token');
         await axios.get(`http://localhost:5000/auth/check/${tok}`)
             .then(response => {
-                dispatch(setA(true));
                 dispatch(setMyId(response.data.id))
             })
             .catch(err => {
@@ -95,8 +94,11 @@ export const setAllUsers = (id) => {
                 dispatch(setMe(response.data))
             })
             .catch(err => {
-                console.log("error")
+                console.log("error");
             })
+            .finally(() =>  dispatch(setA(true))
+            )
+
     }
 }
 

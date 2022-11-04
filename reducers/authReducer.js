@@ -4,6 +4,7 @@ const SET_AUTH_ERROR = 'SET_AUTH_ERROR'
 const SET_ACTIVE_ID = 'SET_ACTIVE_ID'
 const SET_ALL = 'SET_ALL'
 const SET_ME = 'SET_ME'
+const SET_AUTH_LOADING = 'SET_AUTH_LOADING'
 
 
 
@@ -15,6 +16,7 @@ const defaultState = {
     gendersPool: ['Men', 'Woomen' , 'Gey', 'Lesbi'],
     all: null,
     myUser: null,
+    authLoadind: null
 }
 
 
@@ -25,6 +27,12 @@ export default  function authReducer(state= defaultState, action){
             return {
                 ...state,
                 isAuth: action.payload
+            }
+
+        case SET_AUTH_LOADING:
+            return {
+                ...state,
+                authLoadind: action.payload
             }
 
         case SET_AUTH_FETCH:
@@ -77,4 +85,6 @@ export const setMyId = (id) => ({type: SET_ACTIVE_ID, payload: id})
 export const setAll = (us) => ({type: SET_ALL, payload: us})
 
 export const setMe = (us) => ({type: SET_ME, payload: us})
+
+export const setAuthLoading = (us) => ({type: SET_AUTH_LOADING, payload: us})
 
