@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setFullScreen, setSliderActive} from "../../../reducers/profileReducer";
 import crest2 from '../../../icons/crest2.png'
 import nullUser from '../../../icons/user.png'
-import {getChatsUnread, getImage} from "../../../actions/auth";
+import {getImage} from "../../../actions/auth";
 import axios from "axios";
 import {setFirstLoadingID, setMessageLoading, setNowChats} from "../../../reducers/messageReducer";
 
@@ -38,7 +38,7 @@ const ChatList = ({e,idChat, id, navigate, index}) => {
                         {e.twoID.name}
                     </div>
                     <div className='mess_LastMessage'>
-                        {e.messages[0].text}
+                        {(e.messages[0])? e.messages[0].text: null}
                     </div>
                     {(count !== 0) && <div className='unread'>
                         {count}
@@ -59,7 +59,7 @@ const ChatList = ({e,idChat, id, navigate, index}) => {
                             {e.oneID.name}
                         </div>
                         <div className='mess_LastMessage'>
-                            {e.messages[0].text}
+                            {(e.messages[0])? e.messages[0].text: null}
                         </div>
                         {(count !== 0) && <div className='unread'>
                             {count}

@@ -44,6 +44,7 @@ const Messager = () => {
     useEffect(() => {
         if (lastID == idChat) {
             dispatch(checkNewMessage(idChat, nowChat, activeUser));
+            dispatch(getChatsUnread(idChat, activeUser));
         }
         else {
             dispatch(setMessageLoading(true));
@@ -92,7 +93,8 @@ const Messager = () => {
                                 } else flag = false;
                                 return <MessageList isDate={flag} utc={utc} e={e} id={activeUser} index={index}/>
                             } catch (err) {
-                                return <MessageList isDate={false} utc={utc} e={e} id={activeUser} index={index}/>
+                                console.log("error")
+                                // return <MessageList isDate={false} utc={utc} e={e} id={activeUser} index={index}/>
                             }
                         }
                         )}
@@ -101,7 +103,6 @@ const Messager = () => {
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
                     <button onClick={() => {
                         dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
-                        // dispatch(setMessageLoading(true));
                         textMessRef.current.value = "";
                     }} href="" className="send_button">
                         <img src={message_send_icon} alt=""/>
