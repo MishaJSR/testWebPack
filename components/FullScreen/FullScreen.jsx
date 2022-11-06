@@ -3,22 +3,22 @@ import classes from './FullScreen.less'
 import {useDispatch, useSelector} from "react-redux";
 import {setFullScreen, setSliderActive} from "../../reducers/profileReducer";
 import crest2 from '../../icons/crest2.png'
+import {getImage} from "../../actions/auth";
 
-const FullScreen = ({photo}) => {
+const FullScreen = ({leng}) => {
     const dispatch = useDispatch()
-    const fullScreen = useSelector(state => state.profile.fullScreen);
     const sliderPosition = useSelector(state => state.profile.sliderPosition);
-    const photos = useSelector(state => state.profile.photo);
+    const myUser = useSelector(state => state.auth.myUser);
 
 
     return (
         <a className="fullphoto">
                     <a>
-                        <img src={photos[sliderPosition]}></img>
+                        <img src={getImage(myUser.userPhotos[sliderPosition].photo)}></img>
                     </a>
             <div className="slider_container" >
-                <button className="prev" onClick={() => dispatch(setSliderActive(sliderPosition - 1))}>{"<"}</button>
-                <button className="next" onClick={() => dispatch(setSliderActive(sliderPosition + 1))}>{">"}</button>
+                <button className="prev" onClick={() => dispatch(setSliderActive(sliderPosition - 1, leng))}>{"<"}</button>
+                <button className="next" onClick={() => dispatch(setSliderActive(sliderPosition + 1, leng))}>{">"}</button>
                 <button className="exit" onClick={() => dispatch(setFullScreen(false))}>
                     x
                 </button>

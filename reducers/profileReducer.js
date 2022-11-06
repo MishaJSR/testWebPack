@@ -55,9 +55,9 @@ export default  function profileReducer(state= defaultState, action){
         case SET_SLIDER_ACTIVE:
             if (action.payload < 0) return {
                 ...state,
-                sliderPosition: state.photo.length - 1
+                sliderPosition: action.len - 1
             };
-            if (action.payload >= state.photo.length) return {
+            if (action.payload >= action.len) return {
                 ...state,
                 sliderPosition: 0
             }; else
@@ -83,5 +83,5 @@ export const setMyUser = (us) => ({type: SET_MY_USER, payload: us})
 export const setMyUserInfo = (us) => ({type: SET_MY_USER_INFO, payload: us})
 export const setProfileError = (err) => ({type: SET_PROFILE_ERROR, payload: err})
 export const setFullScreen = (bool) => ({type: SET_FULL_SCREEN, payload: bool})
-export const setSliderActive = (num) => ({type: SET_SLIDER_ACTIVE, payload: num})
+export const setSliderActive = (num, len) => ({type: SET_SLIDER_ACTIVE, payload: num, len: len})
 export const setSliderPosition = (num) => ({type: SET_SLIDER_POSITION, payload: num})

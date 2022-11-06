@@ -13,14 +13,12 @@ import {getImage, staticURL} from "../../actions/auth";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 import loaderImg from "../../icons/loading_app.png";
 
-
 const Profile = () => {
     const dispatch = useDispatch()
     const nowUser = useSelector(state => state.profile.nowUser)
     const nowUserInfo = useSelector(state => state.profile.nowUserInfo)
     const {idUser} = useParams();
     const fullScreen = useSelector(state => state.profile.fullScreen)
-    const photos = useSelector(state => state.profile.photo);
     const myUser = useSelector(state => state.auth.myUser);
 
     const listPhotos = myUser.userPhotos.map((e, index) =>
@@ -37,7 +35,7 @@ const Profile = () => {
 
     return (myUser?
             <div>
-                {fullScreen && <FullScreen photo={photo3}/>}
+                {fullScreen && <FullScreen leng={myUser.userPhotos.length}/>}
                 <div className="top_userInfo">
                     <div className='userAva'>
                         <a className='ava_a'>

@@ -73,10 +73,10 @@ export const checkAuth = () => {
         const tok = localStorage.getItem('token');
         await axios.get(`http://localhost:5000/auth/check/${tok}`)
             .then(response => {
-                dispatch(setMyId(response.data.id))
-                setAllUsers(response.data.id);
+                dispatch(setMyId(response.data.id));
             })
             .catch(err => {
+                localStorage.clear();
                 dispatch(setA(false));
             })
     }
