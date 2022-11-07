@@ -3,7 +3,7 @@ import AppRoute from "../router/routes";
 import Navbar from "./Navbar/Navbar";
 import './App.less'
 import {useDispatch, useSelector} from "react-redux";
-import {checkAuth, setAllUsers, staticURL} from "../actions/auth";
+import {checkAuth, getImage, setAllUsers, staticURL} from "../actions/auth";
 import {NavLink} from "react-router-dom";
 import {setA, setAuthLoading} from "../reducers/authReducer";
 import exit from "../icons/exit.png";
@@ -21,8 +21,11 @@ const App = () => {
     const {pathname} = useLocation();
 
     useEffect(() => {
-            dispatch(setAllUsers(localStorage.getItem('id')));
-            dispatch(checkAuth());
+            if (!isAuth && localStorage.getItem('id')) {
+                dispatch(checkAuth());
+                dispatch(setAllUsers(localStorage.getItem('id')))
+            } else dispatch(setAuthLoading(false))
+
     }, [pathname]);
 
     return (authLoadind?
@@ -36,7 +39,7 @@ const App = () => {
                                 localStorage.clear();
                                 dispatch(setA(false))
                             }}>
-                                <img className="nullprofile round" src={staticURL + myUser.ava} alt="" />
+                                <img className="nullprofile round" src={getImage(myUser.ava)} alt="" />
                             </NavLink>
                         </div>
                     </div>}

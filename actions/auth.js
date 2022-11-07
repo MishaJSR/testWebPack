@@ -79,6 +79,7 @@ export const checkAuth = () => {
                 localStorage.clear();
                 dispatch(setA(false));
             })
+
     }
 }
 
@@ -87,6 +88,7 @@ export const setAllUsers = (id) => {
         await axios.get(`http://localhost:5000/users`)
             .then(response => {
                 dispatch(setAll(response.data));
+                dispatch(getMiliSeconds());
             })
             .catch(err => {
                 console.log("error")
@@ -181,8 +183,7 @@ export const checkNewMessage = (idChat, nowChat, activeID) => {
 }
 
 export const getImage = (str) => {
-    const newStr = staticURL + str
-    return newStr
+    return staticURL + str
 }
 
 export const pushMess = (listID, idAdder, text ) => {
