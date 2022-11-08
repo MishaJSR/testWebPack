@@ -10,7 +10,7 @@ import {
     getImage,
     getMiliSeconds,
     getRepos,
-    pushMess
+    pushMess, pushMessImg
 } from "../../actions/auth";
 import photo1 from  '../../icons/11photo.jpg'
 import backbutton from "../../icons/back-button.png";
@@ -18,9 +18,8 @@ import message_send_icon from  '../../icons/send.png'
 import loaderImg from "../../icons/loading_app.png";
 import PreloaderLogin from "../Preloaders/PreloaderLogin";
 import MessageList from "./MessageList/MessageList";
-import {pushLastMessChats, setMessageLoading} from "../../reducers/messageReducer";
+import {pushLastMessChats, setFiles, setMessageLoading} from "../../reducers/messageReducer";
 import nullUser from "../../icons/user.png";
-
 
 
 const Messager = () => {
@@ -32,12 +31,14 @@ const Messager = () => {
     const messageLoading = useSelector(state => state.message.messageLoading)
     const lastID = useSelector(state => state.message.firstLoadingID)
     const isSecond = useSelector(state => state.message.isSecond)
+    const filesImg = useSelector(state => state.message.files)
     const utc = useSelector(state => state.message.utc);
     const scrollRef = useRef(null);
     const textMessRef = useRef(null);
     const { idChat } = useParams();
     const [count, setCount] = useState(0);
     const [scrollCount, setScrollCount] = useState(0);
+    const [images, setImages] = useState();
 
     const executeScroll = () => scrollRef.current.scrollIntoView({block: "end", inline: "nearest"});
 
@@ -101,8 +102,15 @@ const Messager = () => {
                 </div>
                 <div className="fixed_test_edit">
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
+                    <input type="file" multiple accept="image/*" onChange={(e) => dispatch(setFiles(e.target.files[0]))}/>
                     <button onClick={() => {
-                        dispatch(pushMess(nowChat[0].id, activeUser, textMessRef.current.value));
+                        const data = new FormData();
+                        data.append('id_List', nowChat[0].id);
+                        data.append('id_Adder', activeUser);
+                        data.append('text', textMessRef.current.value);
+                        data.append('photo_mess', filesImg);
+                        dispatch(pushMessImg(data))
+                        // dispatch(pushMess(nowChat[0].id, activeUser, ));
                         textMessRef.current.value = "";
                     }} href="" className="send_button">
                         <img src={message_send_icon} alt=""/>

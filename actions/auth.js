@@ -198,6 +198,23 @@ export const pushMess = (listID, idAdder, text ) => {
     }
 }
 
+export const pushMessImg = (data) => {
+    return async (dispatch) => {
+        await axios({
+            method: "post",
+            url: "http://localhost:5000/messages",
+            data: data,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+            .then(response => {
+                // dispatch(pushMessage(99999, listID, idAdder, text))
+            })
+            .catch(err => {
+                dispatch(setAuthError(err.response.data.message))
+            })
+    }
+}
+
 export const getMiliSeconds = () => {
     return (dispatch) => {
         const ms = new Date().getTimezoneOffset()*600;

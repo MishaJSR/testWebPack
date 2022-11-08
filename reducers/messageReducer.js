@@ -8,6 +8,7 @@ const SET_UTC = 'SET_UTC'
 const SET_DATE_MESSAGE = 'SET_DATE_MESSAGE'
 const IS_DISPLAY_DATA = 'IS_DISPLAY_DATA'
 const SORT_CHATS = 'SORT_CHATS'
+const SET_FILES = 'SET_FILES'
 
 const defaultState = {
     isFetching: false,
@@ -24,7 +25,7 @@ const defaultState = {
     utc: false,
     dateMessage: null,
     isDisplayData: false,
-
+    files: null
 }
 
 
@@ -88,6 +89,11 @@ export default  function messageReducer(state= defaultState, action){
                 ...state,
                 isDisplayData: action.payload
             }
+        case SET_FILES:
+            return {
+                ...state,
+                files: action.payload
+            }
 
 
 
@@ -106,3 +112,4 @@ export const setUTC = (us) => ({type: SET_UTC, payload: us})
 export const setDateMessage = (us) => ({type: SET_DATE_MESSAGE, payload: us})
 export const isDisplayData = (us) => ({type: IS_DISPLAY_DATA, payload: us})
 export const sortChats = (us) => ({type: SORT_CHATS, payload: us})
+export const setFiles = (us) => ({type: SET_FILES, payload: us})
