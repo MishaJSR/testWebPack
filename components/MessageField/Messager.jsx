@@ -12,7 +12,7 @@ import {
     getRepos,
     pushMess, pushMessImg
 } from "../../actions/auth";
-import photo1 from  '../../icons/11photo.jpg'
+import icon_upload from  '../../icons/icon-upload.png'
 import backbutton from "../../icons/back-button.png";
 import message_send_icon from  '../../icons/send.png'
 import loaderImg from "../../icons/loading_app.png";
@@ -102,7 +102,12 @@ const Messager = () => {
                 </div>
                 <div className="fixed_test_edit">
                     <textarea ref={textMessRef} type="text" className="text_edit"/>
-                    <input type="file" multiple accept="image/*" onChange={(e) => dispatch(setFiles(e.target.files[0]))}/>
+                    <div className="activity_upload">
+                        <input className="custom-file-input" type="file" multiple accept="image/*" id="file-upload" onChange={(e) => dispatch(setFiles(e.target.files[0]))}/>
+
+                    </div>
+
+
                     <button onClick={() => {
                         const data = new FormData();
                         data.append('id_List', nowChat[0].id);

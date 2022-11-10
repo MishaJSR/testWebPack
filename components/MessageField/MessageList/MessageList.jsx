@@ -16,8 +16,10 @@ const MessageList = ({isDate, utc, e, id, index}) => {
         <>
             {isDate && <span className={'mess_data_center'}>{a.slice(4,10)}</span>}
             <span key={index} className={(e.id_Adder === id)? 'mess_textBlock_reverse message_size' : 'mess_textBlock message_size hisMessage'}>
-            {e.text}
+               {(e.photo_mess)? <img className="img_mess" src={getImage(e.photo_mess)} alt=""/> : null}
+            <span className="text_left">{e.text}</span>
                 <span className={(e.id_Adder === id)? 'mess_time_reverse' : 'mess_time'}>{a.slice(16,18) }{a.slice(18,21)}</span>
+
 
         </span>
         </>
